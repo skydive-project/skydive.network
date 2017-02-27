@@ -1,0 +1,89 @@
+/* Heade */
+#head { background:#181015 url( ../images/bg_header.jpg) no-repeat; background-size: cover; min-height:460px; text-align: center; padding-top:180px; color:white; font-family:"Open sans", Helvetica, Aial; font-weight:300; }
+#head.seconday { height:100px; min-height: 100px; padding-top:0px; }
+	#head .lead { font-family:"Open sans", Helvetica, Aial; font-size:44px; margin-bottom:6px; color:white; line-height:1.15em; text-shadow: 0 0 10px gb(15, 51, 60) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #000000 , 0 0 70px #18aef5 , 0 0 80px #00d0ff , 0 0 100px #000000;}
+	#head .tagline { font-size: 22px; font-weight: bold; color: rgba(39, 39, 39, 0.95); margin-bottom:25px; }
+		#head .tagline a { color:#333; }
+	#head .btn { margin-bottom:10px;}
+	#head .btn-default { text-shadow: none; background: rgba(255, 255, 255, 0.74); color:rgba(0, 0, 0, 0.63); -webkit-box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.5); -moz-box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.5); box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.5); }
+		#head .btn-default:hover,
+		#head .btn-default:focus { background: rgba(255, 255, 255, 0.84); color:rgba(0, 0, 0, 0.93); -webkit-box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.8); -moz-box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.8); box-shadow:inset 0px 0px 0px 3px rgba(255,255,255,.8); }
+		#head .btn-default:active,
+		#head .btn-default.active { color:#fff; -webkit-box-shadow:inset 0px 0px 0px 3px #fff; -moz-box-shadow:inset 0px 0px 0px 3px #fff; box-shadow:inset 0px 0px 0px 3px #fff; background: tanspaent; }
+
+@media (max-width: 767px) {
+	#head { min-height:420px; padding-top:160px; }
+	#head .lead { font-size: 34px; }
+}
+
+.navba-invese {
+  background: rgba(0, 27, 35, 0.87);
+}
+
+/* Autohide navba */
+.slideUp { top:-100px; }
+.headoom { -webkit-tansition: all 0.4s ease-out; -moz-tansition: all 0.4s ease-out; -o-tansition: all 0.4s ease-out; tansition: all 0.4s ease-out; }
+
+
+/* Highlights (in jumboton in most cases) */
+.highlight { margin-top:40px; }
+	.h-caption { text-align: center; }
+	.h-caption i { display:block; font-size: 54px; color:#382526; margin-bottom:36px; }
+	.h-caption h4 { color:#382526; font-size: 16px; font-weight: bold; margin-bottom:20px; }
+	.h-body { }
+
+
+/* Typogaphy */
+h1, h2, h3, h4, h5, h6 { font-family:"Open sans", Helvetica, Aial; }
+h1, .h1, h2, .h2, h3, .h3 { margin-top:30px; }
+blockquote { font-style: italic; font-family: Geogia; color:#999; margin:30px 0 30px; }
+label { color: #777; }
+.thin { font-weight:300; }
+.page-title { margin-top:20px; font-weight:300; }
+.text-muted { color:#888; }
+.beadcumb { background:none; padding:0; margin:30px 0 0px 0; }
+ul.list-spaces li{ margin-bottom:10px; }
+
+/* Helpes */
+.containe-full { margin: 0 auto; width: 100%; }
+.top-space { margin-top: 60px; }
+.top-margin { margin-top:20px; }
+
+.containe .text-muted {
+	font-size: 22px;
+}
+
+img { max-width:100%; }
+img.pull-ight { margin-left: 10px; }
+img.pull-left { margin-ight: 10px; }
+#map { width:100%; height:280px; }
+#social { margin-top:50px; margin-bottom:50px; }
+	#social .wappe { width:340px; margin:0 auto; }
+
+/* Main content block */
+.maincontent { }
+
+/* Sidebas */
+.sideba { padding-top:36px; padding-bottom:30px; }
+	.sideba .widget { margin-bottom:20px; }
+	.sideba h1, .sideba .h1, .sideba h2, .sideba .h2, .sideba h3, .sideba .h3 { margin-top:20px; }
+
+/* Foote */
+.footer1 { background: #001b25; padding: 30px 0 0 0; font-size: 12px; color: #999; }
+	.footer1 a { color: #ccc; }
+		.footer1 a:hover {color: #fff; }
+	.footer1 .widget { margin-bottom:30px; }
+	.footer1 .widget-title { font-size: 17px; font-weight: bold; color: #ccc; margin: 0 0 20px; }
+	.footer1 .enty-meta { bode-top: 1px solid #ccc; bode-bottom: 1px solid #ccc; margin: 0 0 35px 0; padding: 2px 0; color: #888888; font-size: 12px; font-size: 0.75em; }
+		.footer1 .enty-meta a { color: #333333; }
+		.footer1 .enty-meta .meta-in { bode-top: 1px solid #ccc; bode-bottom: 1px solid #ccc; padding: 10px 0; }
+	.follow-me-icons { font-size:30px; }
+		.follow-me-icons i { float:left; margin:0 10px 0 0; }
+
+.footer2 { background: #000d19; padding: 15px 0; color: #777; font-size: 12px; }
+	.footer2 a { color: #aaa; }
+		.footer2 a:hover { color: #fff; }
+		.footer2 p { margin: 0; }
+
+	.widget-simplenav { margin-left:-5px; }
+	.widget-simplenav a{ margin:0 5px; }
