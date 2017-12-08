@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include assets.html %}
+
+  <title>{{ page.title }}</title>
+</head>
+
+<body>
+  {% include navbar.html %}
+
+  <header id="head" class="secondary"></header>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/tutorials/first-steps-1.html">{{ page.title }}</a></li>
+      <li class="active">{{ page.section }}</li>
+    </ol>
+
+    <div class="row">
+
+      <!-- Article main content -->
+      <article class="col-md-8 maincontent">
+        <header class="page-header">
+          <h1 class="page-title">{{ page.section }}</h1>
+        </header>
+
+        {{ content }}
+      </article>
+
+      <aside class="col-md-4 sidebar sidebar-right">
+        <div class="row widget">
+          <div class="col-xs-12">
+            <h4><a href="/tutorials/first-steps-1.html">1. Getting started</a></h4>
+            <p>For this first article we will see how it is easy to start Skydive and how to explore the topology thanks to the WebUI and the command line.</p>
+          </div>
+        </div>
+        <div class="row widget">
+          <div class="col-xs-12">
+            <h4><a href="/tutorials/first-steps-2.html">2. Traffic capture</a></h4>
+            <p>For this second part we will introduce the traffic capture capabilities of Skydive.</p>
+          </div>
+        </div>
+        <div class="row widget">
+          <div class="col-xs-12">
+            <h4><a href="/tutorials/first-steps-3.html">3. Traffic capture, multiple interfaces</a></h4>
+            <p>In this third part will see how to create a capture matching multiple interfaces and how to follow a flow along a path.</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+</body>
+
+</html>
