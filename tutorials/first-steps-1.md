@@ -27,7 +27,7 @@ layout: first-steps
 
 <p class="code">
   <code><br/>
-    $ SKYDIVE_ANALYZER_LISTEN:0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
+    $ SKYDIVE_ANALYZER_LISTEN=0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
   </code>
 </p>
 
@@ -46,7 +46,7 @@ layout: first-steps
 </p>
 
 <p>
-  <video id="nsc_stream_video" poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/getting-started.webm"></video>
+  <video poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/getting-started.webm"></video>
 <p>
 
 <div style="margin-top: 40px;">

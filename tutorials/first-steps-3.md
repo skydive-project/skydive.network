@@ -49,7 +49,7 @@ layout: first-steps
 </p>
 
 <p>
-  <video id="nsc_stream_video" poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-3.webm"></video>
+  <video poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-3.webm"></video>
 <p>
 
 <h2>Journey of a packet</h2>
@@ -76,5 +76,8 @@ layout: first-steps
 <div style="margin-top: 40px;">
   <p style="float:left">
     <a href="/tutorials/first-steps-2.html"><i class="fa fa-chevron-left" aria-hidden="true"> 2. Traffic capture</i></a>
+  </p>
+  <p style="float:right">
+    <a href="/tutorials/first-steps-4.html">4. Packet injector <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   </p>
 </div>

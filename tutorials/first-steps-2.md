@@ -13,7 +13,7 @@ layout: first-steps
 </p>
 
 <p>
-  <video id="nsc_stream_video" poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-1.webm"></video>
+  <video poster="" preload="" controls="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-1.webm"></video>
 <p>
 
 <p>
@@ -32,7 +32,7 @@ layout: first-steps
   </p>
 
 <p>
-  <video id="nsc_stream_video" poster="" preload="" controls="" autoplay="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-2.webm"></video>
+  <video poster="" preload="" controls="" autoplay="" loop="" controlslist="nodownload" src="/assets/videos/first-steps/capture-2.webm"></video>
 <p>
 
 <div style="margin-top: 40px;">
