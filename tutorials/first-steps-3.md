@@ -11,26 +11,24 @@ layout: first-steps
   a bridges thanks to veth interfaces.
 </p>
 
-<p class="code">
-  <code><br/>
-    sudo ip netns add ns1<br/>
-    sudo ip link add ns1-eth0 type veth peer name eth0 netns ns1<br/>
-    sudo ip link set ns1-eth0 up<br/>
-    sudo ip netns exec ns1 ip link set eth0 up<br/>
-    sudo ip netns exec ns1 ip address add 10.0.0.1/24 dev eth0<br/>
-    <br/>
-    sudo ip netns add ns2<br/>
-    sudo ip link add ns2-eth0 type veth peer name eth0 netns ns2<br/>
-    sudo ip link set ns2-eth0 up<br/>
-    sudo ip netns exec ns2 ip link set eth0 up<br/>
-    sudo ip netns exec ns2 ip address add 10.0.0.2/24 dev eth0<br/>
-    <br/>
-    sudo ip link add name br0 type bridge<br/>
-    sudo ip link set dev br0 up<br/>
-    sudo ip link set dev ns1-eth0 master br0<br/>
-    sudo ip link set dev ns2-eth0 master br0<br/>
-  </code>
-</p>
+{% highlight shell %}
+sudo ip netns add ns1
+sudo ip link add ns1-eth0 type veth peer name eth0 netns ns1
+sudo ip link set ns1-eth0 up
+sudo ip netns exec ns1 ip link set eth0 up
+sudo ip netns exec ns1 ip address add 10.0.0.1/24 dev eth0
+
+sudo ip netns add ns2
+sudo ip link add ns2-eth0 type veth peer name eth0 netns ns2
+sudo ip link set ns2-eth0 up
+sudo ip netns exec ns2 ip link set eth0 up
+sudo ip netns exec ns2 ip address add 10.0.0.2/24 dev eth0
+
+sudo ip link add name br0 type bridge
+sudo ip link set dev br0 up
+sudo ip link set dev ns1-eth0 master br0
+sudo ip link set dev ns2-eth0 master br0
+{% endhighlight %}
 
 <p>
   Once executed, Skydive should have detected the two namespaces with all the links and should look like this.
@@ -58,11 +56,9 @@ layout: first-steps
   part.
 </p>
 
-<p class="code">
-  <code>
-    sudo ip netns exec ns1 ping 10.0.0.2
-  </code>
-</p>
+{% highlight shell %}
+sudo ip netns exec ns1 ping 10.0.0.2
+{% endhighlight %}
 
 <p>
   We can now check if we see ICMPv4 packets just by clicking on one captured interface in order to get the flows on the right panel. In order to see

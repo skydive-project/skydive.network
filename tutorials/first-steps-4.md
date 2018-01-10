@@ -7,6 +7,7 @@ layout: first-steps
 <p>This part will be an introduction of the Packet Generator/Injector feature that Skydive provide. We'll keep playing with the WebUI which allow us to
 get started smoothly. The goal of the Packet Generator is to forge packets and to inject them into an interface of the topology. Using this feature with the packet capture allow
 us to verify if the traffic is forwarded as expected.</p>
+
 <h2>Packet injection</h2>
 <p>
   Starting with the lab created in the previous part, two network namespaces with a `ShortestPath` capture, we are going to use
@@ -40,11 +41,9 @@ us to verify if the traffic is forwarded as expected.</p>
   drop traffic for specify TCP port. Let say the port 4567.
 </p>
 
-<p class="code">
-  <code>
-    sudo iptables -t filter -A FORWARD -i br0 -o br0 -m physdev --physdev-is-bridged -j DROP
-  </code>
-</p>
+{% highlight shell %}
+sudo iptables -t filter -A FORWARD -i br0 -o br0 -m physdev --physdev-is-bridged -j DROP
+{% endhighlight %}
 
 Now we can use the generator or anything else like Netcat to generate some UDP or TCP packets, then we can refresh the flow view in order to check where our
 packets have been seen. It will confirm that the packets were dropped around the bridge `br0`.
@@ -59,5 +58,8 @@ see how to use the client to get the same result.
 <div style="margin-top: 40px;">
   <p style="float:left">
     <a href="/tutorials/first-steps-3.html"><i class="fa fa-chevron-left" aria-hidden="true"> 3. Traffic capture, multiple interfaces</i></a>
+  </p>
+  <p style="float:right">
+    <a href="/tutorials/first-steps-5.html">5. Multi-nodes and tunneling <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   </p>
 </div>

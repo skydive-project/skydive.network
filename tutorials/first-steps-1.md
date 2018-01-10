@@ -12,24 +12,20 @@ layout: first-steps
   is simply to download the latest static binary.
 </p>
 
-<p class="code">
-  <code><br/>
-    $ curl -Lo skydive https://github.com/skydive-project/skydive-binaries/raw/jenkins-builds/skydive-latest && chmod +x skydive && sudo mv skydive /usr/local/bin/
-    <br/>
-    $ SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
-  </code>
-</p>
+{% highlight shell %}
+curl -Lo skydive https://github.com/skydive-project/skydive-binaries/raw/jenkins-builds/skydive-latest && chmod +x skydive && sudo mv skydive /usr/local/bin/
+
+SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
+{% endhighlight %}
 
 <p>
   The `SKYDIVE_ETCD_DATA_DIR` variable is just there to specify where the embedded Etcd will store its data. By default Skydive will use the loopback address.
   If you want to specify another address you can use another variable.
 </p>
 
-<p class="code">
-  <code><br/>
-    $ SKYDIVE_ANALYZER_LISTEN=0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
-  </code>
-</p>
+{% highlight shell %}
+SKYDIVE_ANALYZER_LISTEN=0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/local/bin/skydive allinone
+{% endhighlight %}
 
 <h2>The WebUI</h2>
 <p>
