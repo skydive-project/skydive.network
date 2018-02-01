@@ -29,7 +29,7 @@ body {
 
 
 /* Highlights (in jumboton in most cases) */
-.highlight { margin-top:40px; }
+.highlight { margin-top:20px; margin-bottom: 20px;}
 .h-caption { text-align: center; }
 .h-caption i { display:block; font-size: 54px; color:#382526; margin-bottom:36px; }
 .h-caption h4 { color:#382526; font-size: 16px; font-weight: bold; margin-bottom:20px; }
