@@ -120,6 +120,9 @@ Skydive currently supports tunneling protocol like GRE, VXLAN, GENEVE, MPLS/GRE,
 
 <div style="margin-top: 40px;">
   <p style="float:left">
-    <a href="/tutorials/first-steps-4.html"><i class="fa fa-chevron-left" aria-hidden="true"> 2. Traffic capture</i></a>
+    <a href="/tutorials/first-steps-4.html"><i class="fa fa-chevron-left" aria-hidden="true"> 4. Packet injector</i></a>
+  </p>
+  <p style="float:right">
+    <a href="/tutorials/first-steps-6.html">6. API/CLI tour <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   </p>
 </div>
