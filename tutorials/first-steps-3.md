@@ -35,7 +35,7 @@ sudo ip link set dev ns2-eth0 master br0
 </p>
 
 <p>
-  <img src="/assets/images/first-steps/capture-2ns-1.png"/>
+{% lightbox /assets/images/first-steps/capture-2ns-1.png --thumb="/assets/images/first-steps/capture-2ns-1.png" --data="capture-2ns-1" --alt="Capture" %}
 </p>
 
 <h2>Shortest path capture</h2>
@@ -66,7 +66,7 @@ sudo ip netns exec ns1 ping 10.0.0.2
 </p>
 
 <p>
-  <img src="/assets/images/first-steps/capture-2ns-2.png"/>
+  {% lightbox /assets/images/first-steps/capture-2ns-2.png --thumb="/assets/images/first-steps/capture-2ns-2.png" --data="capture-2ns-2" --alt="Capture" %}
 </p>
 
 <div style="margin-top: 40px;">

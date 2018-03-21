@@ -22,7 +22,7 @@ vagrant up
 With the topology expanded, we will get something like this :
 
 <p>
-  <img src="/assets/images/first-steps/multi-nodes-1.png"/>
+  {% lightbox /assets/images/first-steps/multi-nodes-1.png --thumb="/assets/images/first-steps/multi-nodes-1.png" --data="multi-nodes-1" --alt="Capture" %}
 </p>
 
 What the `Vagrantfile` did is simple. It deployed the Skydive binary on every host, using the default config file which can be found
@@ -100,7 +100,7 @@ sudo ovs-vsctl add-port br0 gre0 -- set interface gre0 type=gre options:remote_i
 </p>
 
 <p>
-  <img src="/assets/images/first-steps/multi-nodes-2.png"/>
+  {% lightbox /assets/images/first-steps/multi-nodes-2.png --thumb="/assets/images/first-steps/multi-nodes-2.png" --data="multi-nodes-2" --alt="Capture" %}
 </p>
 
 Now we can create 3 captures, one on a the `eth1` interface of an agent host, and one other on each Open vSwitch bridge.
@@ -120,6 +120,9 @@ Skydive currently supports tunneling protocol like GRE, VXLAN, GENEVE, MPLS/GRE,
 
 <div style="margin-top: 40px;">
   <p style="float:left">
-    <a href="/tutorials/first-steps-4.html"><i class="fa fa-chevron-left" aria-hidden="true"> 2. Traffic capture</i></a>
+    <a href="/tutorials/first-steps-4.html"><i class="fa fa-chevron-left" aria-hidden="true"> 4. Packet injector</i></a>
+  </p>
+  <p style="float:right">
+    <a href="/tutorials/first-steps-6.html">6. API/CLI tour <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   </p>
 </div>

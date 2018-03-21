@@ -34,7 +34,7 @@ SKYDIVE_ANALYZER_LISTEN=0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/loc
 </p>
 
 <p>
-  <img src="/assets/images/first-steps/getting-started-1.png"/>
+  {% lightbox /assets/images/first-steps/getting-started-1.png --thumb="/assets/images/first-steps/getting-started-1.png" --data="started-1" --alt="WebUI" %}
 </p>
 
 <p>

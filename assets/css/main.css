@@ -112,3 +112,11 @@ video {
 	max-width: 100%;
 	display: inline-block;
 }
+
+.navbar-nav .dropdown-menu > li > a {
+	color: white;
+}
+
+.navbar-nav .dropdown-menu {
+	background-color: rgba(0, 0, 0, 0.8);
+}
