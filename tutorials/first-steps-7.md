@@ -74,7 +74,9 @@ PCAP file.
 Clicking on the download icon we get the file which opened with `Wireshark` gives :
 
 <p>
-  {% lightbox /assets/images/first-steps/advanced-captures-1.png --thumb="/assets/images/first-steps/advanced-captures-1.png" --data="advanced-captures-1" --alt="Capture" %}
+  <a href="/assets/images/first-steps/advanced-captures-1.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/advanced-captures-1.png"/>
+  </a>
 </p>
 
 We can of course use the command line to retrieve them, being able to filter

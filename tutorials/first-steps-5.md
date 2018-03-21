@@ -22,7 +22,9 @@ vagrant up
 With the topology expanded, we will get something like this :
 
 <p>
-  {% lightbox /assets/images/first-steps/multi-nodes-1.png --thumb="/assets/images/first-steps/multi-nodes-1.png" --data="multi-nodes-1" --alt="Capture" %}
+  <a href="/assets/images/first-steps/multi-nodes-1.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/multi-nodes-1.png"/>
+  </a>
 </p>
 
 What the `Vagrantfile` did is simple. It deployed the Skydive binary on every host, using the default config file which can be found
@@ -100,7 +102,9 @@ sudo ovs-vsctl add-port br0 gre0 -- set interface gre0 type=gre options:remote_i
 </p>
 
 <p>
-  {% lightbox /assets/images/first-steps/multi-nodes-2.png --thumb="/assets/images/first-steps/multi-nodes-2.png" --data="multi-nodes-2" --alt="Capture" %}
+  <a href="/assets/images/first-steps/multi-nodes-2.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/multi-nodes-2.png"/>
+  </a>
 </p>
 
 Now we can create 3 captures, one on a the `eth1` interface of an agent host, and one other on each Open vSwitch bridge.

@@ -34,7 +34,9 @@ SKYDIVE_ANALYZER_LISTEN=0.0.0.0:8082 SKYDIVE_ETCD_DATA_DIR=/tmp sudo -E /usr/loc
 </p>
 
 <p>
-  {% lightbox /assets/images/first-steps/getting-started-1.png --thumb="/assets/images/first-steps/getting-started-1.png" --data="started-1" --alt="WebUI" %}
+  <a href="/assets/images/first-steps/getting-started-1.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/getting-started-1.png"/>
+  </a>
 </p>
 
 <p>

@@ -23,7 +23,9 @@ vagrant up
 </p>
 
 <p>
-  {% lightbox /assets/images/first-steps/multi-nodes-1.png --thumb="/assets/images/first-steps/multi-nodes-1.png" --data="multi-nodes-1" --alt="Capture" %}
+  <a href="/assets/images/first-steps/multi-nodes-1.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/multi-nodes-1.png"/>
+  </a>
 </p>
 
 Now that we have our lab deployed we can connect to the `analyzer` node in order to
@@ -52,7 +54,9 @@ skydive client query "G" --format dot
 Which gives once rendered the following image:
 
 <p>
-{% lightbox /assets/images/first-steps/dot.png --thumb="/assets/images/first-steps/dot.png" --data="dot" --alt="Dot output" %}
+  <a href="/assets/images/first-steps/dot.png" data-lightbox="WebUI-1" data-title="Skydive WebUI">
+    <img src="/assets/images/first-steps/dot.png"/>
+  </a>
 </p>
 
 In order to get the state of the `eth0` belonging to specific host, we can use this :
