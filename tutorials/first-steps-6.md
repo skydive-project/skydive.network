@@ -295,6 +295,18 @@ skydive client query "G.V('50037073-7862-5234-4996-e58cc067c69c').Flows().Has('A
 ]
 {% endhighlight %}
 
+If you created a capture with a `Name`...
+
+{% highlight shell %}
+skydive client capture create --name Test123 --gremlin "G.V().Has('Name', 'eth0')"
+{% endhighlight %}
+
+...you can use it to select the flows.
+
+{% highlight shell %}
+skydive client query "G.V().Has('Capture.Name', 'Test123').Flows().Has('Application', 'ICMPv4')"
+{% endhighlight %}
+
 It is also possible to start from a flow to get all the captured interfaces
 where `ICMPv4` flows have been seen.
 

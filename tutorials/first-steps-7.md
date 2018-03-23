@@ -79,8 +79,15 @@ Clicking on the download icon we get the file which opened with `Wireshark` give
   </a>
 </p>
 
-We can of course use the command line to retrieve them, being able to filter
-a specific protocol for instance.
+We can of course use the command line to create the capture, here limiting to 5 raw packets
+per flow.
+
+{% highlight shell %}
+skydive client capture create --gremlin "G.V().Has('Name', 'eth0')" --rawpacket-limit 5
+{% endhighlight %}
+
+To get the `PCAP` file we just need to use the `Gremlin` step `RawPackets` specifying the
+output format.
 
 {% highlight shell %}
 skydive client query "G.At('-1s', 1000).Flows().Has('Application', 'ICMPv4').RawPackets()" \
