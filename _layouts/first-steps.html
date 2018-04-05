@@ -6,8 +6,12 @@
 
   <title>{{ page.title }}</title>
 
-  <link href="/assets/vendors/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <script src="/assets/vendors/lightbox/js/lightbox-plus-jquery.min.js"></script>
+  <script>
+  	$(function() {
+  		anchors.options.visible = 'always';
+  		anchors.add('.tutorial > h1, h2, h3, h4, h5, h6');
+  	});
+  </script>
 </head>
 
 <body>
@@ -29,8 +33,9 @@
         <header class="page-header">
           <h1 class="page-title">{{ page.section }}</h1>
         </header>
-
-        {{ content }}
+        <div class="tutorial">
+          {{ content }}
+        </div>
       </article>
 
       <aside class="col-md-4 sidebar sidebar-right">
