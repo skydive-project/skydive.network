@@ -10,4 +10,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 
+	if (window.location.hash) {
+	  $(".headroom").addClass("slideUp");
+	}
 });
