@@ -92,35 +92,6 @@ definition is located in the `contrib/docker` folder of the Skydive sources.
 docker-compose up
 {% endhighlight %}
 
-## Kubernetes
-
-Skydive provides a Kubernetes
-<a href="https://github.com/skydive-project/skydive/blob/master/contrib/kubernetes/skydive.yaml" target="_blank">
-  file
-</a>
-which can be used to deploy Skydive. It will deploy an Elasticsearch,
-a Skydive analyzer and Skydive Agent on each Kubernetes nodes. Once you will
-have Skydive deployment on top on your Kubernetes cluster you will be able to
-monitor, capture, troubleshoot your container networking stack.
-
-A skydive Analyzer
-<a href="http://kubernetes.io/docs/user-guide/services/" target="_blank">
-  Kubernetes service
-</a>
-is created and exposes ports for Elasticsearch and the Analyzer:
-
-* Elasticsearch: 9200
-* Analyzer: 8082
-
-<a href="http://kubernetes.io/docs/admin/daemons/" target="_blank">
-  Kubernetes DaemonSet
-</a>
-is used for Agents in order to have one Agent per node.
-
-{% highlight shell %}
-kubectl create -f skydive.yaml
-{% endhighlight %}
-
 ## Openstack/Devstack
 
 Skydive provides a DevStack plugin that can be used in order to have
