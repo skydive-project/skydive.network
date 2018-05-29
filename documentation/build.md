@@ -42,11 +42,23 @@ testsuite is
   available.
 </a>
 
-To use it :
+The image has been successfuly tested on:
+
+* vagrant v2.1.1
+* VirtualBox v5.2.10
+
+First install the needed vagrant plugins:
+
+{% highlight shell %}
+vagrant install plugin vagrant-openstack-provider
+vagrant install plugin vagrant-reload
+{% endhighlight %}
+
+Then to use it:
 
 {% highlight shell %}
 git clone https://github.com/skydive-project/skydive.git
-cd contrib/dev
+cd skydive/contrib/dev
 vagrant up
 vagrant ssh
 {% endhighlight %}
