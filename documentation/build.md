@@ -42,19 +42,20 @@ testsuite is
   available.
 </a>
 
-The image has been successfuly tested on:
+Supported platforms:
 
-* vagrant v2.1.1
-* VirtualBox v5.2.10
+* Windows hosts
+* OS X hosts
+* Linux distributions
 
-First install the needed vagrant plugins:
+Install one of the following hypervisors:
 
-{% highlight shell %}
-vagrant install plugin vagrant-openstack-provider
-vagrant install plugin vagrant-reload
-{% endhighlight %}
+* VirtualBox (v5.2.10 or v5.2.12)
+* libvirt
 
-Then to use it:
+Install vagrant (v2.1.1).
+
+Then download the run the `Skydive Development Box`:
 
 {% highlight shell %}
 git clone https://github.com/skydive-project/skydive.git
@@ -62,5 +63,3 @@ cd skydive/contrib/dev
 vagrant up
 vagrant ssh
 {% endhighlight %}
-
-The box is available for both `VirtualBox` and `libvirt`.
