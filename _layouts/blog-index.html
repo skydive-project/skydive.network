@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include assets.html %}
+
+  <title>{{ page.title }}</title>
+
+</head>
+
+<body>
+  {% include navbar.html %}
+
+  <header id="head" class="secondary"></header>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/blog/index.html">{{ page.title }}</a></li>
+      <li class="active">{{ page.section }}</li>
+    </ol>
+
+    <div class="row">
+
+      <!-- Article main content -->
+      <article class="blog-container maincontent">
+        <header class="page-header">
+          <h1 class="page-title">{{ page.section }}</h1>
+          {{ page.date }}
+        </header>
+        <div class="blog-index">
+          {{ content }}
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+</body>
+
+</html>
