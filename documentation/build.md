@@ -24,8 +24,10 @@ Skydive relies on two main components:
 
 ## Installation
 
-Make sure you have a working Go environment. [See the install instructions]
-(http://golang.org/doc/install.html).
+Make sure you have a working Go environment.
+<a href="http://golang.org/doc/install.html" target="_blank">
+ See the install instructions
+</a>
 
 {% highlight shell %}
 mkdir -p $GOPATH/src/github.com/skydive-project
