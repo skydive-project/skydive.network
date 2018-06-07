@@ -114,16 +114,16 @@ The plugin accepts the following parameters:
 # Must be in ip:port format
 #SKYDIVE_ANALYZER_LISTEN=
 
+# Configure the skydive analyzer with the etcd server address
+# IP_ADDRESS:12379
+#SKYDIVE_ANALYZER_ETCD=
+
 # Inform the agent about the address on which analyzers are listening
 # Must be in ip:port format
 #SKYDIVE_ANALYZERS=
 
 # ip:port address on which skydive agent listens for connections.
 #SKYDIVE_AGENT_LISTEN=
-
-# Configure the skydive agent with the etcd server address
-# http://IP_ADDRESS:12379
-#SKYDIVE_AGENT_ETCD=
 
 # The path for the generated skydive configuration file
 #SKYDIVE_CONFIG_FILE=
@@ -144,9 +144,10 @@ The plugin accepts the following parameters:
 
 ### The classical two nodes deployment
 
-Inside the Devstack folder of the Skydive sources there are two local.conf files
-that can be used in order to deployment two Devstack with Skydive. The first
-file will install a full Devstack with Skydive analyzer and agent. The second
+Inside the `devstack` folder of the
+[Skydive sources](https://github.com/skydive-project/skydive/tree/master/devstack)
+there are two local.conf files that can be used in order to deployment two Devstack with Skydive.
+The first file will install a full Devstack with Skydive analyzer and agent. The second
 one will install a compute Devstack with only the skydive agent.
 
 For Skydive to create a TOR object that links both Devstack, add the following
