@@ -81,33 +81,3 @@ dpdk:
 {% endhighlight %}
 
 Ports to be used need to be uncommented or added.
-
-## Development box
-
-A Vagrant box with all the required dependencies to compile Skydive and run its
-testsuite is
-<a href="https://app.vagrantup.com/skydive/boxes/skydive-dev" target="_blank">
-  available.
-</a>
-
-Supported platforms:
-
-* Windows hosts
-* OS X hosts
-* Linux distributions
-
-Install one of the following hypervisors:
-
-* VirtualBox (v5.2.10 or v5.2.12)
-* libvirt
-
-Install vagrant (v2.1.1).
-
-Then download the run the `Skydive Development Box`:
-
-{% highlight shell %}
-git clone https://github.com/skydive-project/skydive.git
-cd skydive/contrib/dev
-vagrant up
-vagrant ssh
-{% endhighlight %}
