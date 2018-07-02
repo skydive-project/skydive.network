@@ -53,7 +53,7 @@ The query has to be read as :
 The Skydive implements a subset of the Gremlin language steps and adds
 "network analysis" specific steps.
 
-### V Step
+### V
 
 V step returns the nodes belonging to the graph.
 
@@ -67,7 +67,7 @@ A node ID can be passed to the V step which will return the corresponding node.
 G.V('ca909ccf-203d-457d-70b8-06fe308221ef')
 {% endhighlight %}
 
-### E Step
+### E
 
 E step returns the edges belonging to the graph.
 
@@ -81,7 +81,7 @@ A edge ID can be passed to the E step which will return the corresponding edge.
 G.E('c8aeb26f-0962-4c46-b700-a12dfe720af1')
 {% endhighlight %}
 
-### Has Step
+### Has
 
 `Has` step filters out the nodes that don't match the given metadata list. `Has`
 can be applied either on nodes or edges.
@@ -90,7 +90,7 @@ can be applied either on nodes or edges.
 G.V().Has('Name', 'test', 'Type', 'netns')
 {% endhighlight %}
 
-### In/Out/Both steps
+### In/Out/Both
 
 `In/Out` steps returns either incoming, outgoing or neighbor nodes of
 previously selected nodes.
@@ -109,7 +109,7 @@ of steps `Out/Has` for example.
 G.V().Has('Name', 'br-int', 'Type', 'ovsbridge').Out('Name', 'intf1')
 {% endhighlight %}
 
-### InE/OutE/BothE steps
+### InE/OutE/BothE
 
 `InE/OutE/BothE` steps returns the incoming/ougoing links.
 
@@ -122,7 +122,7 @@ G.V().Has('Name', 'test', 'Type', 'netns').BothE()
 Like for the `In/Out/Both` steps metadata list can be passed directly as
 parameters in order to filter links.
 
-### InV/OutV steps
+### InV/OutV
 
 `InV/OutV` steps returns incoming, outgoing nodes attached to the previously
 selected links.
@@ -131,7 +131,7 @@ selected links.
 G.V().OutE().Has('Type', 'layer2').InV()
 {% endhighlight %}
 
-### Dedup step
+### Dedup
 
 `Dedup` removes duplicated nodes/links or flows. `Dedup` can take a parameter
 in order to specify the field used for the deduplication.
@@ -142,7 +142,7 @@ G.V().Out().Both().Dedup('Type')
 G.Flows().Dedup('NodeTID')
 {% endhighlight %}
 
-### Count step
+### Count
 
 `Count` returns the number of elements retrieved by the previous step.
 
@@ -150,7 +150,7 @@ G.Flows().Dedup('NodeTID')
 G.V().Count()
 {% endhighlight %}
 
-### Values step
+### Values
 
 `Values` returns the property value of elements retrieved by the previous step.
 
@@ -158,7 +158,7 @@ G.V().Count()
 G.V().Values('Name')
 {% endhighlight %}
 
-### Keys step
+### Keys
 
 `Keys` returns the list of properties of the elements retrieved by the previous step.
 
@@ -166,7 +166,7 @@ G.V().Values('Name')
 G.V().Keys()
 {% endhighlight %}
 
-### Sum step
+### Sum
 
 `Sum` returns sum of elements, named 'Name', retrieved by the previous step.
 When attribute 'Name' exists, must be integer type.
@@ -175,7 +175,7 @@ When attribute 'Name' exists, must be integer type.
 G.V().Sum('Name')
 {% endhighlight %}
 
-### Limit step
+### Limit
 
 `Limit` limits the number of elements returned.
 
@@ -183,7 +183,7 @@ G.V().Sum('Name')
 g.Flows().Limit(1)
 {% endhighlight %}
 
-### ShortestPathTo step
+### ShortestPathTo
 
 `ShortestPathTo` step returns the shortest path to node matching the given
 `Metadata` predicate. This step returns a list of all the nodes traversed.
@@ -221,7 +221,7 @@ predicate as a second parameter.
 G.V().Has('Type', 'netns').ShortestPathTo(Metadata('Type', 'host'), Metadata('RelationType', 'layer2'))
 {% endhighlight %}
 
-### SubGraph step
+### SubGraph
 
 `SubGraph` step returns a new Graph based on the previous steps. Step V or E can
 be used to walk trough this new Graph.
@@ -234,7 +234,7 @@ G.E().Has('RelationType', 'layer2').SubGraph().V().Has('Name', 'eth0')
 G.V().Has('Type', 'veth').SubGraph().E()
 {% endhighlight %}
 
-### GraphPath step
+### GraphPath
 
 `GraphPath` step returns a path string corresponding to the reverse path
 from the nodes to the host node they belong to.
@@ -250,7 +250,7 @@ G.V().Has('Type', 'netns').GraphPath()
 The format of the path returned is the following:
 `node_name[Type=node_type]/.../node_name[Type=node_type]``
 
-### At step
+### At
 
 `At` allows to set the time context of the Gremlin request. It means that
 we can contextualize a request to a specific point of time therefore being
@@ -276,7 +276,7 @@ G.At('-1m', 500).V()
 G.At('-1m', 3600).Flows()
 {% endhighlight %}
 
-### Flows step
+### Flows
 
 Flows step returns flows of nodes where a capture has been started or of nodes
 where the packets are coming from or going to.
@@ -289,7 +289,7 @@ in order to know how to start a capture from a Gremlin query.
 G.V().Has('Name', 'br-int').Flows()
 {% endhighlight %}
 
-### Flows In/Out steps
+### Flows In/Out
 
 From a flow step it is possible to get the node from where the packets are
 coming or the node where packets are going to. Node steps are of course
@@ -300,7 +300,7 @@ G.V().Has('Name', 'br-int').Flows().In()
 G.V().Has('Name', 'br-int').Flows().Out()
 {% endhighlight %}
 
-### Flows Has step
+### Flows Has
 
 `Has` step filters out the flows that don't match the given attributes list.
 
@@ -341,7 +341,7 @@ See [Flow Schema](/api/flows/) for further explanations.
 
 Link, Network and Transport keys shall be matched with any of A or B by using OR operator.
 
-### Flows Sort step
+### Flows Sort
 
 `Sort` step sorts flows by the given field and requested order.
 By default, the flows are in ascending order by their `Last` field.
@@ -353,7 +353,7 @@ G.Flows().Sort("Metric.ABPackets")
 G.Flows().Sort(DESC, "Metric.ABPackets")
 {% endhighlight %}
 
-### Flows Dedup step
+### Flows Dedup
 
 `Dedup` step de-duplicates flows having the same TrackingID.
 
@@ -361,7 +361,7 @@ G.Flows().Sort(DESC, "Metric.ABPackets")
 G.Flows().Dedup()
 {% endhighlight %}
 
-### Metrics step
+### Metrics
 
 `Metrics` returns arrays of metrics of a set of flows or interfaces, grouped by
 the flows UUIDs or Node IDs.
