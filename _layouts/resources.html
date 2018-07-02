@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include assets.html %}
+
+  <title>{{ page.title }}</title>
+
+</head>
+
+<body>
+  {% include navbar.html %}
+
+  <header id="head" class="secondary"></header>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/resources/index.html">{{ page.title }}</a></li>
+    </ol>
+
+    <div class="row">
+
+      <!-- Article main content -->
+      <article class="resource-container maincontent">
+        <div class="resource-index">
+          {{ content }}
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+</body>
+
+</html>
