@@ -21,6 +21,7 @@ Skydive relies on two main components:
 * clang
 * kernel-headers / linux-libc-dev
 * bcc / bcc-devel
+* npm
 
 ## Installation
 
