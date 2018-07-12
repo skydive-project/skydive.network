@@ -49,3 +49,6 @@ Some resources from IBM mainly focused on Kubernetes and Istio deployments.
 * <a href="https://github.com/cognetive/CloudControlWorkshop-2018" target="_blank">
     Operational analytics at cloud grade
   </a>
+* <a href="https://github.com/cognetive/contributing-to-skydive-2018" target="_blank">
+    Contributing to skydive, Insights gained during first months of contributing to the Skydive.
+  </a>
