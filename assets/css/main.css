@@ -113,10 +113,43 @@ video {
 	display: inline-block;
 }
 
+.center {
+	text-align: center;
+}
+
 .navbar-nav .dropdown-menu > li > a {
 	color: white;
 }
 
 .navbar-nav .dropdown-menu {
 	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.blog-container {
+	margin-left: 8%;
+	margin-right: 8%;
+}
+
+.blog-index h1 {
+	font-size: 32px;
+	margin-bottom: 2px;
+}
+
+.blog-index h2 {
+	margin: 0;
+	margin-left: 5px;
+	margin-bottom: 20px;
+	font-size: 16px;
+  color: grey;
+}
+
+.blog-container table {
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+.blog-container th {
+	vertical-align: bottom;
+	background-color: #ccc;
+	padding-right: 8px;
 }
