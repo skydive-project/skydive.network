@@ -81,7 +81,7 @@ Basically there are only two roles :
 | skydive_etcd_port                | Defines Etcd port                                              |
 | skydive_etcd_servers             | Defines Etcd servers if not embedded                           |
 | skydive_analyzer_port            | Defines analyzer listen port                                   |
-| skydive_analyzer_ip              | Defines anakyzer listen IP                                     |
+| skydive_analyzer_ip              | Defines analyzer listen IP                                     |
 | skydive_deployment_mode          | Specify the deployment mode                                    |
 | skydive_auth_type                | Specify the authentication type                                |
 | skydive_basic_auth_file          | Secret file for basic authentication                           |
@@ -96,7 +96,10 @@ Basically there are only two roles :
 | os_password                      | OpenStack password, used to create a service user              |
 | os_tenant_name                   | OpenStack tenant name, used to create a service user           |
 | os_domain_name                   | OpenStack domain name, used to create a service user           |
+| os_user_domain_name              | OpenStack user domain name, used to create a service user      |
+| os_project_domain_name           | OpenStack project domain name, used to create a service user   |
 | os_endpoint_type                 | OpenStack endpoint type, used to create a service user         |
+| os_identity_api_version          | OpenStack identity api version, used to create a service user  |
 | skydive_os_auth_url              | OpenStack authentication URL used for authentication and Probe |
 | skydive_os_service_user_role     | Set the role of the Skydive service user                       |
 | skydive_os_service_username      | Skydive service user name                                      |
@@ -105,8 +108,10 @@ Basically there are only two roles :
 | skydive_os_service_domain_name   | Skydive service domain name                                    |
 | skydive_os_service_region_name   | Skydive service region name                                    |
 | skydive_os_service_endpoint_type | Skydive service endpoint type                                  |
+| skydive_os_service_insecure      | Set to true if allowing using insecure TLS connection          |
 | skydive_auth_os_tenant_name      | Keystone tenant name that the users have to belong to          |
 | skydive_auth_os_domain_name      | Keystone domain name that the users have to belong to          |
+| skydive_auth_os_domain_id        | Keystone domain id that the users have to belong to            |
 
 
 ### How to configure Skydive
