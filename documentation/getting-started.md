@@ -139,7 +139,7 @@ The plugin accepts the following parameters:
 #SKYDIVE_LOGLEVEL=DEBUG
 
 # List of public interfaces for the agents to register in fabric
-#SKYDIVE_PUBLIC_INTERFACES=devstack1/eth0 devstack2/eth1
+#SKYDIVE_PUBLIC_INTERFACES="devstack1/eth0 devstack2/eth1"
 {% endhighlight %}
 
 ### The classical two nodes deployment
@@ -154,7 +154,7 @@ For Skydive to create a TOR object that links both Devstack, add the following
 line to your local.conf file :
 
 {% highlight shell %}
-SKYDIVE_PUBLIC_INTERFACES=devstack1/eth0 devstack2/eth1
+SKYDIVE_PUBLIC_INTERFACES="devstack1/eth0 devstack2/eth1"
 {% endhighlight %}
 
 where `devstack1` and `devstack2` are the hostnames of the two nodes followed
