@@ -15,8 +15,8 @@ The module is part of the Skydive repository, so the first thing is to prepare t
 mkdir skydive-ansible
 cd skydive-ansible
 mkdir library
-curl -LO library/skydive_node.py http://
-curl -LO library/skydive_edge.py http://
+curl -Lo library/skydive_node.py https://raw.githubusercontent.com/skydive-project/skydive/master/contrib/ansible/library/skydive_node.py
+curl -Lo library/skydive_edge.py https://raw.githubusercontent.com/skydive-project/skydive/master/contrib/ansible/library/skydive_edge.py
 {% endhighlight %}
 
 Now we have the module available, let's write a really simple playbook creating two nodes, one will be a "Top of Rack" switch

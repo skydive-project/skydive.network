@@ -18,8 +18,7 @@ In this blog post, we will see how you can script these actions using workflows.
 # [Network topology discovery with Ansible and Skydive](/blog/ansible-library.html)
 ## by Sylvain Afchain, 05/09/2018
 
-Since `Skydive` already has a `Python` client [library](/documentation/api-python) I thought it was "fun" to create an `Ansible` module leveraging it being able to add
-topology entities. In this blog post I will show how to use this module and how to leverage it to provide real topology information.
+Since `Skydive` already has a `Python` client [library](/documentation/api-python) I thought it was "fun" to create an `Ansible` module leveraging it to add topology entities. In this blog post I will show how to use this module and how to use this module to provide real topology information.
 
 
 # [Deploy Skydive on top of OpenStack using Tripleo](/blog/tripleo.html)
