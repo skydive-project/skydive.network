@@ -266,7 +266,7 @@ Our workflow returns an object with:
 Let's upload our complete workflow:
 
 {% highlight shell %}
-$ skydive client workflow create --path create-capture.yml
+$ skydive client workflow create --path check-connectivity.yml
 {% endhighlight %}
 
 Finally, let's run our workflow using the WebUI will give the following output:
