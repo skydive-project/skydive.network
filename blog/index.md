@@ -3,6 +3,18 @@ title: Blog
 layout: blog-index
 ---
 
+# [Introduction to Skydive workflows](/blog/introduction-to-workflows.html)
+## by Sylvain Baubeau, 29/08/2018
+
+Since version 0.19, Skydive allows you to automate Skydive actions using a new type of object called `workflows`.
+Let's imagine you want to test the connectivity between 2 containers. If you had to do it manually, you would have to :
+- create a capture on the interface of each container
+- generate some traffic using the packet injector
+- use a Gremlin query to check for flows corresponding to the generated traffic
+- delete the captures
+In this blog post, we will see how you can script these actions using workflows.
+
+
 # [Network topology discovery with Ansible and Skydive](/blog/ansible-library.html)
 ## by Sylvain Afchain, 05/09/2018
 
@@ -14,7 +26,7 @@ topology entities. In this blog post I will show how to use this module and how 
 ## by Sylvain Afchain, 07/08/2018
 
 Skydive supports multiple deployment ways, from containers (Kubernetes, OpenShift) to Ansible playbook. In this blog post I will explain how to
-deploy Skydive on top of OpenStack using Tripleo. Support for Skydive is already integrated in TripleO since the Queens release but this support has been reworked the new config download](https://docs.openstack.org/tripleo-docs/latest/install/advanced_deployment/ansible_config_download.html) feature.
+deploy Skydive on top of OpenStack using Tripleo. Support for Skydive is already integrated in TripleO since the Queens release but this support has been reworked the new [config download](https://docs.openstack.org/tripleo-docs/latest/install/advanced_deployment/ansible_config_download.html) feature.
 During the last few weekds, we added a TripleO job to our CI. In this blog post, I will extract some of the scripts involved in the CI job to show how to deploy the latest version of Skydive with Tripleo.
 
 
