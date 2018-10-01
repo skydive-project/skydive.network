@@ -207,7 +207,7 @@ skydive client inject-packet create \
 
 Deleting the active packet injector can be done by using the `delete` sub-command with the UUID of the injector.
 
-UUID of the injection will be returend as a response of `create`
+UUID of the injection will be returned as a response of `create`
 
 ### Example
 
@@ -306,3 +306,133 @@ A POST request is issued with the JSON message as payload.
 
 A local file (prefixed by file://) to execute a script. It receives the JSON
 message through stdin
+
+## Topology Rules
+
+Skydive allows you to create and delete Nodes, update node metadata and create and delete Edges with the help of Topology rules API.
+It provides two seperate rule for node and edge
+* `node-rule`
+* `edge-rule`
+
+### Node Rules
+
+With `node-rule` you can create and delete nodes and update node metadata.
+
+`node-rule` contain following fields
+* `action`, action: create or update
+* `description`, rule description (optional)
+* `name`, rule name (optional)
+* `node-name`, node name only for create node
+* `node-type`, node type only for create node
+* `metadata`, node metadata, key value pairs. 'k1=v1, k2=v2'
+* `query`, gremlin query only for update
+
+To create a new node, you have to specify the `Action` as `create` and provide the node name and node type.
+
+### Example
+
+{% highlight shell %}
+skydive client node-rule create \
+  --action="create" \
+  --node-name="node1" \
+  --node-type="fabric" \
+  --metadata="key1=value1, key2=value2"
+
+{
+  "UUID": "fcbc566a-14a1-4b39-490d-13f6e0cd4a51",
+  "Name": "",
+  "Description": "",
+  "Metadata": {
+    "Name": "node1",
+    "Type": "fabric",
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "Action": "create",
+  "Query": ""
+}
+{% endhighlight %}
+
+To update a node metadata, you have to specify the `action` as `update` and query to select nodes.
+
+### Example
+
+{% highlight shell %}
+skydive client node-rule create \
+  --action="update" \
+  --metadata="newkey1=newValue1, newkey2=newValue2"
+  --query="G.V().Has('Name', 'eth0')"
+
+{
+  "UUID": "76bd84cc-d447-4cc8-522e-e35c80353c83",
+  "Name": "",
+  "Description": "",
+  "Metadata": {
+    "newkey1": "newValue1",
+    "newkey2": "newValue2"
+  },
+  "Action": "update",
+  "Query": "G.V().Has('Name', 'eth0')"
+}
+{% endhighlight %}
+
+### Delete node rule
+
+Deleting the node rule can be done by using the `delete` sub-command with the UUID of the node rule.
+
+UUID of the node rule will be returned as a response of `create`
+
+### Example
+
+{% highlight shell %}
+skydive client node-rule delete 76bd84cc-d447-4cc8-522e-e35c80353c83
+{% endhighlight %}
+
+By deleting the done rule, it will delete the node from the graph.
+
+### Edge Rules
+
+With `edge-rule` you can create ans delete edges.
+
+`edge-rule` contain following fields
+* `name`, the rule name
+* `description`, the rule description
+* `src`, source node gremlin query
+* `dst`, destination node gremlin query
+* `relationtype`, relation type of the link (layer2, ownership and both)
+* `metadata`, edge metadata, key value pairs. 'k1=v1, k2=v2'
+
+To create a edge rule, you have to provide the source and destination nodes and the relation type of the edge
+
+### Example
+
+{% highlight shell %}
+skydive client edge-rule create \
+  --src="G.V().Has('Name', 'node1')" \
+  --dst="G.V().Has('Name', 'node2')" \
+  --relationtype="layer2" \
+  --metadata="key=value"
+
+{
+  "UUID": "c7e65252-85bf-494b-76d1-6840a819571f",
+  "Name": "",
+  "Description": "",
+  "Src": "G.V().Has('Name', 'node1')",
+  "Dst": "G.V().Has('Name', 'node2')",
+  "Metadata": {
+    "RelationType": "layer2",
+    "key": "value"
+  }
+}
+{% endhighlight %}
+
+### Delete edge rule
+Deleting the edge rule can be done by using the `delete` sub-command with the UUID of the edge rule.
+
+UUID of the edge rule will be returned as a response of `create`
+
+### Example
+
+{% highlight shell %}
+skydive client edge-rule delete c7e65252-85bf-494b-76d1-6840a819571f
+{% endhighlight %}
