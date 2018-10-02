@@ -48,8 +48,8 @@ vi playbook.yaml
     
     - name: Link TOR and port  
       skydive_edge:
-        node1: "{{ tor_result.UUID }}"
-        node2: "{{ port_result.UUID }}"
+        node1: "{{ "{{" }} tor_result.UUID }}"
+        node2: "{{ "{{" }} port_result.UUID }}"
         relation_type: ownership
         metadata:
           Type: unknown
@@ -91,13 +91,13 @@ port to a host interface.
     
     - name: Link TOR and port  
       skydive_edge:
-        node1: "{{ tor_result.UUID }}"
-        node2: "{{ port_result.UUID }}"
+        node1: "{{ "{{" }} tor_result.UUID }}"
+        node2: "{{ "{{" }} port_result.UUID }}"
         relation_type: ownership
 
     - name: Link port and eth0  
       skydive_edge:
-        node1: "{{ port_result.UUID }}"
+        node1: "{{ "{{" }} port_result.UUID }}"
         node2: "G.V().Has('Name', 'enp0s25')"
         relation_type: layer2
 {% endhighlight %}
@@ -127,43 +127,43 @@ and the `Skydive` module to inject them into the `Skydive` topology.
 
   - name: Create TOR
     skydive_node:
-      name: "TOR - {{ lldp[item]['chassis']['name'] }}"
+      name: "TOR - {{ "{{" }} lldp[item]['chassis']['name'] }}"
       type: "fabric"
-      seed: "{{ lldp[item]['chassis']['name'] }}:{{ lldp[item]['chassis']['mac'] }}"
+      seed: "{{ "{{" }} lldp[item]['chassis']['name'] }}:{{ "{{" }} lldp[item]['chassis']['mac'] }}"
       metadata:
-        MAC: "{{ lldp[item]['chassis']['mac'] }}"
-        Description: "{{ lldp[item]['chassis']['descr'] }}"
-        Address: "{{ lldp[item]['chassis']['mgmt-ip'] }}"
+        MAC: "{{ "{{" }} lldp[item]['chassis']['mac'] }}"
+        Description: "{{ "{{" }} lldp[item]['chassis']['descr'] }}"
+        Address: "{{ "{{" }} lldp[item]['chassis']['mgmt-ip'] }}"
     register: tors
-    with_items: "{{ lldp.keys() }}"
+    with_items: "{{ "{{" }} lldp.keys() }}"
 
   - name: Create port
     skydive_node:
-      name: "{{ lldp[item]['port']['descr'] }}"
+      name: "{{ "{{" }} lldp[item]['port']['descr'] }}"
       type: "fabric"
-      seed: "{{ lldp[item]['port']['descr'] }}:{{ lldp[item]['port']['mac'] }}"
+      seed: "{{ "{{" }} lldp[item]['port']['descr'] }}:{{ "{{" }} lldp[item]['port']['mac'] }}"
       metadata:
-        MAC: "{{ lldp[item]['port']['mac'] }}"
+        MAC: "{{ "{{" }} lldp[item]['port']['mac'] }}"
     register: ports
-    with_items: "{{ lldp.keys() }}"
+    with_items: "{{ "{{" }} lldp.keys() }}"
     
   - name: Link port to TOR
     skydive_edge:
-      node1: "{{ item.0.UUID }}"
-      node2: "{{ item.1.UUID }}"
+      node1: "{{ "{{" }} item.0.UUID }}"
+      node2: "{{ "{{" }} item.1.UUID }}"
       relation_type: ownership
     with_together:
-      - "{{ tors.results }}"
-      - "{{ ports.results }}"
+      - "{{ "{{" }} tors.results }}"
+      - "{{ "{{" }} ports.results }}"
 
   - name: Link port to host interface
     skydive_edge:
-      node1: "{{ item.0.UUID }}"
-      node2: "G.V().Has('Type', 'host').Out().Has('Name', '{{ item.1 }}')"
+      node1: "{{ "{{" }} item.0.UUID }}"
+      node2: "G.V().Has('Type', 'host').Out().Has('Name', '{{ "{{" }} item.1 }}')"
       relation_type: ownership
     with_together:
-      - "{{ ports.results }}"
-      - "{{ lldp.keys() }}"
+      - "{{ "{{" }} ports.results }}"
+      - "{{ "{{" }} lldp.keys() }}"
 {% endhighlight %}
 
 ## conclusion
