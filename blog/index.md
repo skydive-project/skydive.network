@@ -3,6 +3,15 @@ title: Blog
 layout: blog-index
 ---
 
+# [Capture for interfaces that don't exist (yet)](/blog/capture-future-intf.html)
+## by Sylvain Afchain, 09/10/2018
+
+I have been reached out a couple of time for a feature request which was something like :
+
+"I would like to capture the very first packets, like DHCP, of a VM that is about to boot. It will be great to add a mechanism to start a capture for a future interface."
+
+So yes it will be nice, and in fact it is already possible since the beginning of Skydive as it was one of the use cases that we wanted to address. Let's see how to achieve this.
+
 # [Introduction to Skydive workflows](/blog/introduction-to-workflows.html)
 ## by Sylvain Baubeau, 29/08/2018
 
