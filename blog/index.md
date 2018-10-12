@@ -3,6 +3,15 @@ title: Blog
 layout: blog-index
 ---
 
+# [Discover topology using LLDP](/blog/lldp-probe.html)
+## by Sylvain Baubeau, 09/10/2018
+
+We recently added support for [automatic topology discovery using Ansible.](/blog/ansible-library)
+During last hackathon, we discussed about adding an LLDP probe in a dynamic way by creating
+a LLDP probe in Skydive.
+
+Let's see how it works.
+
 # [Capture for interfaces that don't exist (yet)](/blog/capture-future-intf.html)
 ## by Sylvain Afchain, 09/10/2018
 
