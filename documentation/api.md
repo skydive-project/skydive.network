@@ -26,7 +26,7 @@ $ skydive client query "G.V().Has('Name', 'br-int', 'Type' ,'ovsbridge')"
 {% endhighlight %}
 
 Refer to the
-<a href="/documentation/gremlin">Gremlin section</a> for further
+<a href="/documentation/api-gremlin">Gremlin section</a> for further
 explanations about the syntax and the functions available.
 
 ## Flow requests
