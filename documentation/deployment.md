@@ -217,6 +217,41 @@ IP.2 = 192.168.69.14
 IP.3 = 127.0.0.1
 {% endhighlight %}
 
+### Configuration environment variables
+
+Skydive allows setting most of its configuration knobs using environment variables.
+When a parameter is provided both through the configuration file and an environment
+variable, the latter will be used.
+
+The mechanism works as follow: when Skydive looks for a value of a configuration
+parameter, it will first look for an environment variable that starts with `SKYDIVE_`
+and where the dots were replaced by an underscore. Let's take an example.
+
+#### Simple configuration value
+
+The `analyzer.listen` parameter describes the address the Skydive analyzer will listen
+to for incoming requests. Using the configuration file, this YAML snippet can be used:
+```yaml
+agent:
+  listen: 127.0.0.1:8082
+```
+
+To specify this value using an environment variable (or to override the one previously defined),
+the `SKYDIVE_ANALYZER_LISTEN` variable can be used.
+
+#### Arrays
+
+If the configuration knob is a list - for instance a list of strings - the values of the arrays
+must be separated by a space. For instance `agent.topology.probes` that holds the list of the
+topology probes that must be enabled on the agent can be specified using the environment variable
+`SKYDIVE_AGENT_TOPOLOGY_PROBES` with the value `netlink netns lldp`.
+
+#### Dictionnaries
+
+In some specific cases, such as the Web UI configuration `ui`, a dictionnary is used to hold
+the configuration. In this cases, the environment variable can hold a JSON objects such as:
+`export SKYDIVE_UI='{"theme":"light"}'`.
+
 ### RBAC
 
 Skydive's roles and policies enforcement is based on
