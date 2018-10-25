@@ -232,7 +232,7 @@ and where the dots were replaced by an underscore. Let's take an example.
 The `analyzer.listen` parameter describes the address the Skydive analyzer will listen
 to for incoming requests. Using the configuration file, this YAML snippet can be used:
 ```yaml
-agent:
+analyzer:
   listen: 127.0.0.1:8082
 ```
 
