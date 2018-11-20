@@ -41,6 +41,13 @@ G.V().Has('Name', 'br-int', 'Type', 'ovsbridge').Out()
 ]
 {% endhighlight %}
 
+The following expression will return all the k8s Pods belonging to the
+k8s NameSpace named `my-namespace`.
+
+{% highlight shell %}
+G.V().Has('Docker.Labels.io.kubernetes.pod.namespace' ,'my-namespace').Descendants()
+{% endhighlight %}
+
 The query has to be read as :
 
 1. `G` returns the topology Graph
@@ -88,6 +95,15 @@ can be applied either on nodes or edges.
 
 {% highlight shell %}
 G.V().Has('Name', 'test', 'Type', 'netns')
+{% endhighlight %}
+
+### HasKey
+
+`HasKey` step filters out the nodes that don't match the given key list. `HasKey`
+can be applied either on nodes or edges.
+
+{% highlight shell %}
+G.V().HasKey('Name')
 {% endhighlight %}
 
 ### In/Out/Both
