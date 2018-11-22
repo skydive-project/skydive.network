@@ -12,29 +12,55 @@ Skydive relies on two main components:
 
 ## Dependencies
 
+### Minimal
 * Go >= 1.9
-* Elasticsearch >= 2.0
-* libpcap
-* libxml2
+* libpcap (dev)
+* libxml2 (dev)
+* libvirt (dev)
 * protoc >= 3.0
-* llvm
-* clang
-* kernel-headers / linux-libc-dev
-* bcc / bcc-devel
+* protobuf
 * npm
 
 ## Installation
 
-Make sure you have a working Go environment.
-<a href="http://golang.org/doc/install.html" target="_blank">
- See the install instructions
-</a>
+### Dependencies
+
+Below how to install the minimal required dependencies for Fedora and Ubuntu.
+
+#### Fedora
+
+{% highlight shell %}
+sudo dnf install -y git make patch golang findutils protobuf-c-compiler protobuf-devel \
+  npm libpcap-devel libxml2-devel libvirt-devel
+{% endhighlight %}
+
+#### Ubuntu
+
+{% highlight shell %}
+sudo apt-get install -y git make patch golang findutils protobuf-compiler libprotobuf-dev \
+  npm libpcap0.8-dev libxml2-dev libvirt-dev
+{% endhighlight %}
+
+### Build
+
+Create a dedicated GOPATH.
+
+For example:
+
+{% highlight shell %}
+mkdir $HOME/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+{% endhighlight %}
+
+then get and build Skydive
 
 {% highlight shell %}
 mkdir -p $GOPATH/src/github.com/skydive-project
-git clone https://github.com/skydive-project/skydive.git $GOPATH/src/github.com/skydive-project/skydive
+git clone https://github.com/skydive-project/skydive.git \
+  $GOPATH/src/github.com/skydive-project/skydive
 cd $GOPATH/src/github.com/skydive-project/skydive
-make install
+make
 {% endhighlight %}
 
 ### eBPF support
@@ -42,6 +68,12 @@ make install
 Skydive can leverage `eBPF` programs for topology and flow capture. This provides
 a lightweight solution for retrieving topology information such as process socket information
 and for packet processing within the kernel.
+
+Some extra dependencies are required :
+  * llvm
+  * clang
+  * kernel-headers / linux-libc-dev
+  * bcc / bcc-devel
 
 To enable the eBPF support :
 
@@ -54,15 +86,15 @@ make install WITH_EBPF=true
 Skydive support flow capture from DPDK NICs. This allows starting flow capture on-demand
 on DPDK interface like any other interface.
 
+Some extra dependencies are required :
+  * numactl-devel
+  * kernel-devel
+
 To enable the DPDK support :
 
 {% highlight shell %}
 make install WITH_DPDK=true
 {% endhighlight %}
-
-Some extra dependencies are required :
- * numactl-devel
- * kernel-devel
 
 The DPDK probe requires some configuration adjustments. Below the DPDK configuration
 section :
