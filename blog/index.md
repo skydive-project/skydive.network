@@ -3,6 +3,13 @@ title: Blog
 layout: blog-index
 ---
 
+# [Add non Skydive nodes in topology](/blog/topology-rules.html)
+## by Masco Kaliyamoorthy, 27/11/2018
+
+Skydive displays the network topology by receiving the network events from the skydive agents. You ever wondered how to add or display in topology diagram, a network components which is out of the skydives’ agent network or a non network entities like TOR, data store and etc. No more worries on that, thanks to the skydive ‘Topology Rules’ API.
+
+Since version 0.20, Skydive provides Topology Rules API, can be used to create new nodes and edges and update existing nodes’ metadata. Topology Rules API divided in two APIs, node rule API and edge rule API. Node rule API is used for create a new node and update metadata of existing node. Edge rule API is used for create edge between two nodes i.e linking two nodes.
+
 # [Discover topology using LLDP](/blog/lldp-probe.html)
 ## by Sylvain Baubeau, 09/10/2018
 
