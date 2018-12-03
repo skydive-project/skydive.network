@@ -377,6 +377,14 @@ G.Flows().Sort(DESC, "Metric.ABPackets")
 G.Flows().Dedup()
 {% endhighlight %}
 
+### Flows Group step
+
+`Group` step returns the flows matching the same argument field (TrackingID by default).
+
+{% highlight shell %}
+G.Flows().Group("Network.Protocol")
+{% endhighlight %}
+
 ### Metrics
 
 `Metrics` returns arrays of metrics of a set of flows or interfaces, grouped by
