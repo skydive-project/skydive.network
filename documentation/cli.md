@@ -1,6 +1,6 @@
 ---
 title: Documentation
-section: API
+section: Command Line Interface
 layout: doc
 ---
 
