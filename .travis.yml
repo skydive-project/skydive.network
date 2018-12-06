@@ -1,0 +1,28 @@
+language: ruby
+rvm:
+  - 2.4.1
+
+sudo: false
+
+install: gem install jekyll jekyll-sitemap
+
+script:
+    - SKYDIVE_NETWORK=$PWD
+    - WORKDIR=$(mktemp -d)
+    - pushd $WORKDIR
+    - (jekyll serve --no-watch --incremental --verbose --source $SKYDIVE_NETWORK 2>&1 | tee log) &
+    - JEKYLL_PID=$!
+    - sleep 3
+    - wget -r -p http://127.0.0.1:4000 >/dev/null 2>&1 || true
+
+    - kill $JEKYLL_PID
+    - sleep 1
+
+    - grep ERROR log
+    - ERRORS=$(grep ERROR log | wc -l)
+    - ret=0
+    - if [ $ERRORS -ne 0 ]; then ret=1 ; fi
+    - popd
+    - rm -rf $WORKDIR
+    - echo $ret
+    - exit $ret
