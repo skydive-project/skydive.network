@@ -17,7 +17,7 @@ In this blog post, we will see how you can script these actions using workflows.
 ## Workflows are JavaScript
 
 Skydive workflows are written in JavaScript. Why JavaScript you may ask ? Since a pretty long time now, Skydive
-has an embedded JavaScript engine that can be used to write complex [alerts](/api#alerting). JavaScript is also
+has an embedded JavaScript engine that can be used to write complex [alerts](/documentation/cli#alerting). JavaScript is also
 the only language that you can use in every browser. With NodeJS, JavaScript became a first class language to write
 'real' applications. Therefore, using JavaScript allows us to write JavaScript programs that can be executed:
 

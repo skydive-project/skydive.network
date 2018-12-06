@@ -222,7 +222,7 @@ and flows.
 
 ### Alert evaluation
 
-An alert can be specified through a [Gremlin](/api/gremlin) query or a
+An alert can be specified through a [Gremlin](api-gremlin) query or a
 JavaScript expression. The alert will be triggered if it returns:
 
 * true
@@ -279,7 +279,7 @@ skydive client alert create \
 * `Name`, the alert name (optional)
 * `Description`, a description for the alert (optional)
 * `Expression`, a Gremlin query or JavaScript expression
-* `Action`, URL to trigger. Can be a [local file](/api/alerts#webhook) or a [WebHook](/api/alerts#script)
+* `Action`, URL to trigger. Can be a [local file](cli#webhook) or a [WebHook](cli#script)
 * `Trigger`, event that triggers the alert evaluation. Periodic alerts can be
    specified with `duration:5s`, for an alert that will be evaluated every 5 seconds.
 

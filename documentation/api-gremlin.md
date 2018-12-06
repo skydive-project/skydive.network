@@ -285,7 +285,7 @@ G.At('Sun, 06 Nov 2016 08:49:37 GMT').V()
 
 `At` takes also an optional duration parameter which allows to specify a
 period of time in second for the lookup. This is useful especially when retrieving
-metrics. See [`Metrics` step](/api/gremlin#metrics-step) for more information.
+metrics. See [`Metrics` step](api-gremlin#metrics-step) for more information.
 
 {% highlight shell %}
 G.At('-1m', 500).V()
@@ -298,7 +298,7 @@ Flows step returns flows of nodes where a capture has been started or of nodes
 where the packets are coming from or going to.
 The following Gremlin query returns the flows from the node `br-int` where
 an sFlow capture has been started.
-See the [client section](/getting-started/client/#flow-captures)
+See the [client section](getting-started/client/#flow-captures)
 in order to know how to start a capture from a Gremlin query.
 
 {% highlight shell %}
@@ -353,7 +353,7 @@ Key can be any attributes of the Flow data structure :
 * `Last`
 
 Lt, Lte, Gt, Gte predicates can be used on numerical fields.
-See [Flow Schema](/api/flows/) for further explanations.
+See [Flow Schema](https://github.com/skydive-project/skydive/blob/master/flow/flow.proto) for further explanations.
 
 Link, Network and Transport keys shall be matched with any of A or B by using OR operator.
 
