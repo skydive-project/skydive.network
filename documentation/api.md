@@ -1,10 +1,12 @@
 ---
 title: Documentation
-section: REST API
+section: API
 layout: doc
 ---
 
-## Topology/Flow request
+## REST API
+
+### Topology/Flow request
 
 {% highlight shell %}
 POST /api/topology HTTP/1.1
@@ -81,7 +83,7 @@ Content-Type: application/json
 ]
 {% endhighlight %}
 
-## Capture
+### Capture
 
 To create capture :
 
@@ -138,4 +140,58 @@ Content-Type: application/json
 {% highlight shell %}
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=UTF-8
+{% endhighlight %}
+
+## WebSocket API
+
+### Flow stream
+
+Since version `0.21` it is possible to subscribe to analyzers flow stream. This feature can be use
+to react on new flow events or to store/send them to an external tool. The flow stream is provided as
+a WebSocket endpoint. You can use the `skydive-client` Python library or the Golang one. By default
+flows will be sent in JSON, but can also be sent in Protobuf if requested.
+
+The WebSocket endpoint is `/ws/subscriber/flow`
+
+The following example shows how to subscribe with using the Python library, and write the received flows to a file.
+
+First you need to install the `skydive-client` library :
+
+{% highlight shell %}
+pip install skydive-client
+{% endhighlight %}
+
+And the script itself :
+
+{% highlight shell %}
+import json
+
+from skydive.websocket.client import WSClient
+from skydive.websocket.client import WSClientDefaultProtocol
+
+
+class WSLoggerProtocol(WSClientDefaultProtocol):
+
+    def onMessage(self, payload, isBinary):
+        msg = json.loads(payload)
+
+        file = self.factory.kwargs["file"]
+
+        for flow in msg["Obj"]:
+            file.write(json.dumps(flow))
+        print "wrote %d flows" % len(msg["Obj"])
+
+
+def main():
+    file = open("/tmp/flows", "w")
+
+    client = WSClient("MyHost", "ws://127.0.0.1:8082/ws/subscriber/flow",
+                      protocol=WSLoggerProtocol,
+                      file=file)
+    client.connect()
+    client.start()
+
+
+if __name__ == '__main__':
+    main()
 {% endhighlight %}

@@ -24,6 +24,8 @@ Topology probes currently implemented :
 * NetNS
 * Ethtool
 * Socket Information
+* LLDP
+* LibVirt
 
 ## Topology connectors
 
@@ -32,6 +34,7 @@ Topology probes currently implemented :
 * Kubernetes
 * Lxd
 * Opencontrail
+* runC
 
 ## Flow Probes supported
 
