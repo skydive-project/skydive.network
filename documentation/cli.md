@@ -399,7 +399,7 @@ With `edge-rule` you can create ans delete edges.
 * `description`, the rule description
 * `src`, source node gremlin query
 * `dst`, destination node gremlin query
-* `relationtype`, relation type of the link (layer2, ownership and both)
+* `relationtype`, relation type of the link
 * `metadata`, edge metadata, key value pairs. 'k1=v1, k2=v2'
 
 To create a edge rule, you have to provide the source and destination nodes and the relation type of the edge
