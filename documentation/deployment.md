@@ -147,13 +147,12 @@ To secure communication between Agent(s) and Analyzer, Skydive relies on TLS com
 TLS communication can be enabled by defining X509 certificates in their respective section in the configuration file, like :
 
 {% highlight shell %}
-analyzer:
-  X509_cert: /etc/ssl/certs/analyzer.domain.com.crt
-  X509_key:  /etc/ssl/certs/analyzer.domain.com.key
-
-agent:
-  X509_cert: /etc/ssl/certs/agent.domain.com.crt
-  X509_key:  /etc/ssl/certs/agent.domain.com.key
+tls:
+  ca_cert: /etc/ssl/certs/ca.domain.com.crt
+  server_cert: /etc/ssl/certs/analyzer.domain.com.crt
+  server_key:  /etc/ssl/certs/analyzer.domain.com.key
+  client_cert: /etc/ssl/certs/agent.domain.com.crt
+  client_key:  /etc/ssl/certs/agent.domain.com.key
 {% endhighlight %}
 
 #### Generate the certificates
