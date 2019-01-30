@@ -78,13 +78,13 @@ We just need to create a Node rule to add the device in the topology. We can add
 
 Run the below Node rule command to add the storage device in the topology diagram.
 
-{% highlight %}
+{% highlight shell %}
 skydive client node-rule create --action="create" --node-name="sda" --node-type="persistentvolume" --metadata="DEVNAME=/dev/sda,DEVTYPE=disk,ID.MODEL=SD_MMC, ID.MODEL ID=0316, ID.PATH TAG=pci-0000_00_14_0-usb-0_3_1_0-scsi-0_0_0_0, ID.SERIAL SHORT=20120501030900000, ID.VENDOR=Generic-, ID.VENDOR ID=0bda, MAJOR=8, MINOR=0, SUBSYSTEM=block, USEC_INITIALIZED=104393719727"
 {% endhighlight %}
 
 Run the below Edge rule command to link the created node with the host node
 
-{% highlight %}
+{% highlight shell %}
 skydive client edge-rule create --src="G.V().Has('Name', 'node1')" --dst="G.V().Has('Name', 'sda')" --relationtype="ownership"
 {% endhighlight %}
 
