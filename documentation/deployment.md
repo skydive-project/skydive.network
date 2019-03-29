@@ -162,7 +162,8 @@ python skydive-tripleo-inventory \
 
 This will generate an inventory called `skydive-inventory.yaml`
 
-There is way to pass extra parameters in order to pass some specify values:
+There is a way to pass extra parameters in order to pass some specific values, please see
+the following usage output:
 
 {% highlight shell %}
 usage: skydive-tripleo-inventory [-h] [--agent-extra-file AGENT_EXTRA_FILE]
