@@ -97,6 +97,19 @@ can be applied either on nodes or edges.
 G.V().Has('Name', 'test', 'Type', 'netns')
 {% endhighlight %}
 
+### HasEither
+
+`HasEither` step filters out the nodes that don't match the given metadata list. 
+While `Has` applies an `AND` between each key/value, `HasEither` applies an `OR`.
+`HasEither` can be applied either on nodes or edges.
+
+The following expression will return nodes with either `Name` equals to `test` or
+with `type` equal to `netns`.
+
+{% highlight shell %}
+G.V().HasEither('Name', 'test', 'Type', 'netns')
+{% endhighlight %}
+
 ### HasKey
 
 `HasKey` step filters out the nodes that don't match the given key list. `HasKey`
@@ -237,6 +250,19 @@ predicate as a second parameter.
 G.V().Has('Type', 'netns').ShortestPathTo(Metadata('Type', 'host'), Metadata('RelationType', 'layer2'))
 {% endhighlight %}
 
+### As/Select
+
+`As/Select` steps allows to store intermediate results in order to aggregate them later. It is useful to do
+an union of two parts of the Graph.
+
+The following expression retrieves all the nodes of `Type` `netns` and stores the result in the variable `result1`
+then select all the nodes of `Type` `device` and stores the result in the variable `result2`. Finally returns
+an union of both results doing a `Select` of the two variables.
+
+{% highlight shell %}
+G.V().Has('Type', 'netns').As('result1').G.().Has('Type', 'device').As('result2').Select('result1', 'result2')
+{% endhighlight %}
+
 ### SubGraph
 
 `SubGraph` step returns a new Graph based on the previous steps. Step V or E can
@@ -249,22 +275,6 @@ G.E().Has('RelationType', 'layer2').SubGraph().V().Has('Name', 'eth0')
 {% highlight shell %}
 G.V().Has('Type', 'veth').SubGraph().E()
 {% endhighlight %}
-
-### GraphPath
-
-`GraphPath` step returns a path string corresponding to the reverse path
-from the nodes to the host node they belong to.
-
-{% highlight shell %}
-G.V().Has('Type', 'netns').GraphPath()
-
-[
-  "test[Type=host]/vm1[Type=netns]"
-]
-{% endhighlight %}
-
-The format of the path returned is the following:
-`node_name[Type=node_type]/.../node_name[Type=node_type]``
 
 ### At
 
