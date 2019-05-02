@@ -89,7 +89,7 @@ installing `kubectl` can be found as follows:
 Now you can setup Skydive on the cluster using `kubectl apply`:
 
 ```
-kubectl apply -f https://github.com/skydive-project/skydive/blob/master/contrib/kubernetes/skydive.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/contrib/kubernetes/skydive.yaml
 ```
 This will result in the deployment of:
 - Skydive agent (one per node): collecting host/node information via node
