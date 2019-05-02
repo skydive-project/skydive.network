@@ -3,6 +3,15 @@ title: Blog
 layout: blog-index
 ---
 
+# [Introducing the Kubernetes probe](/blog/k8s-probe.html)
+## by Aidan Shribman, 01/05/2019
+
+In this article I introduce the Kubernetes Probe which constructs the
+topological view of the Kubernetes resources. I begin by providing the
+motivation to using the probe as opposed to just using standard
+tooling (such as `kubectl`). Next I walk through several use cases
+demonstrated on various Kubernetes resources.
+
 # [ What performance can I expect](/blog/performance-1.html)
 ## by Sylvain Afchain, 07/02/2019
 
