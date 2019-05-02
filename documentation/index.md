@@ -15,26 +15,61 @@ Elasticsearch database.
 Skydive is SDN-agnostic but provides SDN drivers in order to enhance the
 topology and flows informations.
 
-## Topology Probes supported
+## Topology Probes
 
-Topology probes currently implemented :
+Topology probes are used to construct the graph comprising:
+* Graph nodes: depicted as cycles (in contracted form) or areas (in expanded form)
+* Graph edges: depicted as strait lines (with arrowheads when directional)
 
-* OVSDB
-* NetLINK
-* NetNS
-* Ethtool
-* Socket Information
-* LLDP
-* LibVirt
+### Agent Topology Probes
 
-## Topology connectors
+Probes which extract topological information from the host about host residing entities are agent probes:
+* Docker (docker)
+* Ethtool (ethtool)
+* LibVirt (libvirt)
+* LLDP (lldp)
+* Lxd (lxd)
+* NetLINK (netlink)
+* NetNS (netns)
+* Neutron (neutron)
+* OVSDB (ovsdb)
+* Opencontrail (opencontrail)
+* runC (runc)
+* Socket Information (socketinfo)
+* VPP (vpp)
 
-* Neutron
-* Docker
-* Kubernetes
-* Lxd
-* Opencontrail
-* runC
+### Analyzer Topology Probes
+
+Probes which extract topological information from a remote global entity are analyzer probes:
+* Istio (istio)
+* Kubernetes (k8s)
+* OVN (ovn)
+
+### K8s
+
+The k8s probe provides topological information.
+
+Graph nodes:
+* general: cluster, namespace
+* compute: node, pod, container
+* storage: persistentvolumeclaim (pvc), persistentvolume (pv), storageclass
+* network: networkpolicy, service, endpoints, ingress
+* deployment: deployment, statefulset, replicaset, replicationcontroller, cronjob, job
+* configuration: configmap, secret
+
+Graph edges:
+* k8s-k8s ownership (e.g. k8s.namespace -- k8s.pod)
+* k8s-k8s relationship (e.g. k8s.service -- k8s.pod)
+* k8s-physical relationship (e.g. k8s.node -- host)
+
+Graph node metadata:
+* indexed fields: standard fields such as `Type`, `Name` plus k8s specific such as `K8s.Namespace`
+* stored-only fields: the entire content of k8s resource stored under `K8s.Extra`
+
+Graph node status:
+* the `Status` node metadata field
+* with values Up (white) / Down (red)
+* currently implemented for resources: pod, persistentvolumeclaim (pvc) and persistentvolume (pv)
 
 ## Flow Probes supported
 
