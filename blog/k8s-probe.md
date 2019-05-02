@@ -89,7 +89,7 @@ installing `kubectl` can be found as follows:
 Now you can setup Skydive on the cluster using `kubectl apply`:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/contrib/kubernetes/skydive.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/contrib/kubernetes/skydive.yaml
 ```
 This will result in the deployment of:
 - Skydive agent (one per node): collecting host/node information via node
@@ -97,10 +97,10 @@ This will result in the deployment of:
 - Skydive analyzer (one per cluster): collecting Kubernetes topology via the
   Kubernetes probe
 
-To expose the Skydive dashboard use `kubectl expose`:
+To expose the Skydive dashboard use `kubectl port-forward`:
 
 ```
-kubectl expose deployment skydive-analyzer --type=LoadBalancer --port=8082
+kubectl port-forward service/skydive-analyzer 8082:8082
 ```
 You can thereafter open your browser at `http://localhost:8082` and
 view the Skydive dashboard.
