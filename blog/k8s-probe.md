@@ -2,7 +2,7 @@
 title: Introducing the Kubernetes Probe
 layout: blog-post
 author: Aidan Shribman
-date: 24/04/2019
+date: 01/05/2019
 ---
 
 In this blog post, I present the Skydive v0.22.0 Kubernetes topology
