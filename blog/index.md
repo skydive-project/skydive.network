@@ -3,7 +3,7 @@ title: Blog
 layout: blog-index
 ---
 
-# [Introducing the Kubernetes probe](/blog/k8s-probe.html)
+# [Introducing the Skydive Kubernetes probe](/blog/k8s-probe.html)
 ## by Aidan Shribman, 01/05/2019
 
 In this article I introduce the Kubernetes Probe which constructs the
