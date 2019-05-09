@@ -1,5 +1,5 @@
 ---
-title: Introducing the Kubernetes Probe
+title: Introducing the Skydive Kubernetes Probe
 layout: blog-post
 author: Aidan Shribman
 date: 01/05/2019
@@ -10,7 +10,73 @@ probe which is now production-ready, supporting landscapes that
 contain up to 1,000 pods. I cover the motivation, capabilities and
 potential use-cases.
 
+## Getting Started
+
+If you don't already have a Kubernetes cluster, you can setup a
+minimal single node cluster for evaluation purposes using `minikube`.
+You will find installation instructions for `minikube` at
+[install-minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/).
+
+You will need `kubectl` to interact with the cluster. You will find
+installing instructions for `kubectl` at
+[install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+Now you can setup Skydive on the cluster using `kubectl apply`:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/contrib/kubernetes/skydive.yaml
+```
+This will result in the deployment of:
+- **Skydive agent (one per node):** collecting host/node information via node
+  probes
+- **Skydive analyzer (one per cluster):** collecting Kubernetes topology via the
+  Kubernetes probe
+
+To expose the Skydive dashboard use `kubectl port-forward`:
+
+```
+kubectl port-forward service/skydive-analyzer 8082:8082
+```
+You can thereafter open your browser at `http://localhost:8082` and
+view the Skydive dashboard.
+
+## Hello World
+
+Let us explore the Kubernetes hello world sample found at
+[hello-minikube](https://kubernetes.io/docs/tutorials/hello-minikube/)
+
+You can create the deployment using `kubectl create`:
+
+```
+kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+```
+
+And expose `hello-node` application via `hello-world` service using `kubectl
+expose`:
+
+```
+kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+```
+
+In the Skydive dashboard you can expand the cluster resource and the default
+namespace and then focus the view by setting filter to
+`G.V().Has("K8s.Labels.app", "hello-node")`, resulting in:
+
+<p align="center">
+  <a href="/assets/images/blog/k8s-hello.png" data-lightbox="hello" data-title="Skydive WebUI: Kubernetes Hello World">
+    <img src="/assets/images/blog/k8s-hello.png" style="width:90%;"/>
+  </a>
+</p>
+
+Next you can highlight specific resources as follows:
+
+- hello-node deployment: `G.V().Has("Type", "deployment")`
+- hello-node pods: `G.V().Has("Type", "pod")`
+- hello-world service: `G.V().Has("Type", "service")`
+
 ## Motivation
+
+But before we continue let us pause for a moment and discuss the motivation.
 
 Kubernetes configuration is declarative, consisting of many resources
 such as the network policy configuration below (a default deny all
@@ -27,10 +93,10 @@ spec:
   - Egress
 ```
 
-Tools such as `kubectl` extract the declarative configuration,
-together with extra status fields. Although this my be sufficient, it
-does not explain how the network policy resource interacts with other
-resources, such the pods set out below:
+Tools such as `kubectl` extract a per-resource declarative configuration, plus
+status fields, but lack information about how these resources interact.
+
+For example let us consider the following pods:
 
 ```
 apiVersion: core/v1
@@ -48,8 +114,9 @@ spec:
   ...
 ```
 
-Furthermore, it may not be simple to answer trivial questions, such as
-whether traffic is allowed to flow from `pod:a` to `pod:b`.
+And given the above network policy and pods it may not be simple to answer
+trivial questions, such as whether traffic is allowed to flow from `pod:a` to
+`pod:b`.
 
 In essence, traffic is denied due to `networkpolicy:deny` governing both
 `pod:a` and `pod:b`, as all reside in the default namespace and as the
@@ -63,81 +130,23 @@ governs `pod:a` and `pod:b`:
 pod:a <---> networkpolicy:deny <---> pod:b
 ```
 
-Generally, Kubernetes may define relations between resources in many
-ways such as by:
+And looking beyond just network policies, Kubernetes defines relations between
+resources in many ways:
 - namespace/name
 - label-selectors
 - pod-selectors
 - namespace-selectors
 - ip-blocks
 
-The Skydive Kubernetes probe has the ability to understand and
-interpret these relationships and construct graph edges enabling the
-user to better interpret the Kubernetes landscape.
-
-## Getting Started
-
-If you don't already have a Kubernetes cluster, you can setup a
-minimal single node cluster for evaluation purposes using `minikube`.
-You will find installation instructions for `minikube` at
-[install-minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/).
-
-You will need `kubectl` to interact with the cluster. Instructions on
-installing `kubectl` can be found as follows:
-[install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-
-Now you can setup Skydive on the cluster using `kubectl apply`:
-
-```
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/contrib/kubernetes/skydive.yaml
-```
-This will result in the deployment of:
-- Skydive agent (one per node): collecting host/node information via node
-  probes
-- Skydive analyzer (one per cluster): collecting Kubernetes topology via the
-  Kubernetes probe
-
-To expose the Skydive dashboard use `kubectl port-forward`:
-
-```
-kubectl port-forward service/skydive-analyzer 8082:8082
-```
-You can thereafter open your browser at `http://localhost:8082` and
-view the Skydive dashboard.
-
-## Hello World
-
-Let us explore the Kubernetes hello world sample found here, to obtain
-a taste of the probe:
-[hello-minikube](https://kubernetes.io/docs/tutorials/hello-minikube/)
-
-We create the deployment using `kubectl create`:
-
-```
-kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
-```
-
-And expose the `hello-node` via `hello-world` service using `kubectl expose`:
-
-```
-kubectl expose deployment hello-node --type=LoadBalancer --port=8080
-```
-
-In the Skydive dashboard, expand the cluster resource and the default
-namespace.
-
-Try the following Gremlin highlight options to explore the resources
-created by this sample:
-
-- hello-node deployment: `G.V().Has("Type", "deployment", "Name", "hello-node")`
-- hello-node pods: `G.V().Has("Type", "pod", "Name", Regex("hello-node.*"))`
-- hello-world service: `G.V().Has("Type", "service", "Name", "hello-world")`
+What makes the Skydive Kubernetes probe unique is that it translates all the
+declarative relationships into graph edges, thus enabling to better understand
+the Kubernetes landscape.
 
 ## Topological Model
 
 The topological view places Kubernetes resources within their correct
-hierarchical location (for example, by placing a pod within its
-namespace). The Kubernetes probe supports the following resources:
+hierarchical location, e.g. a pod resource will reside within its parent
+namespace resource. The Kubernetes probe supports the following resources:
 
 ```
 - cluster (top level)
@@ -161,15 +170,14 @@ namespace). The Kubernetes probe supports the following resources:
   - storageclass
 ```
 
-Additional edges (non-ownership relationships) exist between
-Kubernetes resources (e.g. k8s.networkpolicy to k8s.pod) or between
-Kubernetes resources and non-Kubernetes resources (e.g. k8s.container
-to docker).
+Additional edges (non-ownership relationships) exist between Kubernetes
+resources (e.g. `k8s.networkpolicy` to `k8s.pod`) or between Kubernetes
+resources and non-Kubernetes resources (e.g. `k8s.container` to `docker`).
 
 ## Exploring Topology
 
 We will now go back to the network policy space to better understand
-how Skydive Kubernetes helps to gain insights, via its graph layout. 
+how Skydive Kubernetes helps gain insights, via its graph layout. 
 
 What is a Kubernetes network policy?
 Let us first understand what a Kubernetes network policy is:
@@ -191,11 +199,11 @@ such as where:
 
 Open the WebUI and expand the cluster resource and then the default namespace.
 
-We will use the bookinfo sample and focus our view by applying:
+We will use the bookinfo sample, focus your view by applying:
 - Filter: `G.V().Has("K8s.Labels.app", "bookinfo")`
 - Highlight: `k8s network`
 
-Now we can create the bookinfo sample (enhanced with network policy)
+Now you can create the bookinfo sample (enhanced with network policy)
 by applying:
 
 ```
@@ -215,7 +223,7 @@ permit traffic only where specifically needed, such as between
 
 <p align="center">
   <a href="/assets/images/blog/k8s-netpol.png" data-lightbox="netpol" data-title="Skydive WebUI: Kubernetes Network Policies">
-    <img src="/assets/images/blog/k8s-netpol.png" style="width:50%;"/>
+    <img src="/assets/images/blog/k8s-netpol.png" style="width:90%;"/>
   </a>
 </p>
 
@@ -236,26 +244,38 @@ kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22
 kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/pv-claim.yaml
 kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/pv-pod.yaml
 ```
-When running the sample, you will notice how the highlighted resources
-are RED (down) during creation phase and later turn WHITE (up) when
-operational. The final state is depicted in the following figure:
+When running the sample, you will notice that failed/starting resources are
+shown in RED (Down), while running resources are shown in WHITE (Up). Let us
+look at the following figure:
 
 <p align="center">
   <a href="/assets/images/blog/k8s-storage.png" data-lightbox="storage" data-title="Skydive WebUI: Kubernetes Storage">
-    <img src="/assets/images/blog/k8s-storage.png" style="width:50%;"/>
+    <img src="/assets/images/blog/k8s-storage.png" style="width:90%;"/>
   </a>
 </p>
 
+Notice that:
+- `task-pv-pod` depends on `task-pv-claim`
+- `task-pv-claim` depends on `task-pv-volume`
+
+Also notice that:
+- `task-pv-pod`: is down (RED)
+- `task-pv-claim`: is down (RED)
+- `task-pv-volume`: is up (WHITE)
+
+The combination of dependence graph and status indication allows for root cause
+analysis, such as that `task-pv-pod` is down due to a cascading error eminating
+from `task-pv-claim` being down.
+
 ## DevOps Automation
 
-Skydive has a REST API enabling automation which utilizes the
-Kubernetes topology model.
+Skydive has a REST API for automation based on the Kubernetes topology model.
 
-We use wordpress sample and focus our view by:
+We use wordpress sample, now focus your view by applying:
 - Filter: `G.V().Has("K8s.Labels.app", "wordpress")`
 - Highlight: `G.V().Has("Type", "secret", "Name", "mysql-pass").In()`
 
-Let us now create the wordpress sample (password **abc123**):
+Now create the wordpress sample (password **abc123**):
 
 ```
 kubectl create secret generic mysql-pass --from-literal password=abc123
@@ -278,7 +298,7 @@ We therefore recreated `secret:mysql-pass` with **abc456**. However,
 the dependant pods were not recreated and still use the old password
 **abc123**.
 
-**Enter Skydive REST API.**
+**Enter Skydive REST API!**
 
 First, we need to install the Skydive binary:
 
@@ -288,9 +308,10 @@ chmod +x skydive
 sudo mv skydive /usr/local/bin/skydive
 ```
 
-By utilizing the REST API, we can delete all the outdated pods
-with password **abc123** and allow the deployment resources to kick in
-and create new replacement pods with password **abc456**:
+We don't use the REST API directly but rather the Skydive client CLI wrapper,
+and with it we delete all the outdated pods with password **abc123** and allow
+the deployment resources to kick in and create new replacement pods with
+password **abc456**:
 
 ```
 skydive client query \
@@ -299,20 +320,18 @@ skydive client query \
 	xargs -n 1 kubectl delete pod
 ```
 
-The following figure captures the state of the system straight after
-deleting the old pods by our script (in WHITE before disappearing) and
-after the deployment resources have automatically created the new pods
-(in RED as they have not yet stabilized):
+The following figure captures the state of the system after deleting the old
+pods by our script and after the deployment resources automatically create the
+new pods (in RED as they have not yet stabilized):
 
 <p align="center">
   <a href="/assets/images/blog/k8s-secret.png" data-lightbox="secret" data-title="Skydive WebUI: Kubernetes Secret">
-    <img src="/assets/images/blog/k8s-secret.png" style="width:50%;"/>
+    <img src="/assets/images/blog/k8s-secret.png" style="width:90%;"/>
   </a>
 </p>
 
 ## Conclusion
 
-In this blog post we have learned how to use Skydive to gain insights
-into our Kubernetes cluster, from topology exploration to status
-indications. We have now finally showcased how DevOps automation can
-be layered atop Skydive.
+In this blog post we have learnt how to use Skydive Kubernetes probe to gain
+insights into our Kubernetes cluster, we demonstrated topology exploration,
+status indications and DevOps automation.
