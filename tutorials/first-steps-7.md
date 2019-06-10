@@ -115,4 +115,7 @@ distributed troubleshooting tool.
   <p style="float:left">
     <a href="/tutorials/first-steps-6.html"><i class="fa fa-chevron-left" aria-hidden="true"> 6. API/CLI tour</i></a>
   </p>
+  <p style="float:right">
+    <a href="/tutorials/first-steps-8.html">8. Skydive as Grafana datasource <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+  </p>
 </div>

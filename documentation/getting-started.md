@@ -263,7 +263,7 @@ To access to the WebUI of agents or analyzer :
 http://<address>:<port>
 {% endhighlight %}
 
-### History and Data store
+### History and Datastore
 
 Skydive can keep track of all the modifications of the topology and flows in a datastore. Skydive supports two backends: 
 [Elasticsearch](https://www.elastic.co/products/elasticsearch) and [OrientDB](https://orientdb.com/).
