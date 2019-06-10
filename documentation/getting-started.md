@@ -262,3 +262,48 @@ To access to the WebUI of agents or analyzer :
 {% highlight shell %}
 http://<address>:<port>
 {% endhighlight %}
+
+### History and Data store
+
+Skydive can keep track of all the modifications of the topology and flows in a datastore. Skydive supports two backends: 
+[Elasticsearch](https://www.elastic.co/products/elasticsearch) and [OrientDB](https://orientdb.com/).
+
+In order to activate the history we need first to define the storage in the configuration 
+[file](https://github.com/skydive-project/skydive/blob/master/etc/skydive.yml.default#L369)
+
+`Elasticsearch` example:
+
+```
+storage:
+  myelasticsearch:
+    driver: elasticsearch
+    host: 127.0.0.1:9200
+```
+
+Then we need to use it as topology 
+[backend](https://github.com/skydive-project/skydive/blob/master/etc/skydive.yml.default#L81):
+
+```
+  topology:
+    backend: myelasticsearch
+```
+
+and as Flow [backend](https://github.com/skydive-project/skydive/blob/master/etc/skydive.yml.default#L74)
+
+```
+  flow:
+    backend: myelasticsearch
+```
+
+### Grafana
+
+In order to use the Grafana datasource plugin we need to use a data store, please see the upper section.
+
+A docker image with the datasource plugin available can be use as following:
+
+```
+docker run -d --name=grafana -p 3000:3000 skydive/skydive-grafana-datasource
+```
+
+For further information, please see the 
+[plugin README](https://github.com/skydive-project/skydive-grafana-datasource)
