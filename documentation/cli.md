@@ -264,11 +264,11 @@ It gets trigerred again the next time the bandwidth bypass this threshold.
 
 {% highlight shell %}
 skydive client alert create \
-  --expression "Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\").ABBytes > 1*1024*1024" \
+  --expression "JSON.parse(Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\")).ABBytes > 1*1024*1024" \
   --trigger "duration:10s"
 {
   "UUID": "331b5590-c45d-4723-55f5-0087eef899eb",
-  "Expression": "Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\").ABBytes > 1*1024*1024",
+  "Expression": "JSON.parse(Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\")).ABBytes > 1*1024*1024",
   "Trigger": "duration:10s",
   "CreateTime": "2016-12-29T13:29:05.197612381+01:00"
 }
