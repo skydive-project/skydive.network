@@ -254,7 +254,8 @@ you can use the following JavaScript expression :
 
 {% highlight shell %}
 skydive client alert create \
-  --expression "states = Gremlin(\"G.V().Has('Name', 'br-int-lb').Values('State')\"); result = false; for (var i = 0; i < states.length; i++){ if (states[i] == 'DOWN'){ result = true; break;}} result;"
+  --expression "states = JSON.parse(Gremlin(\"G.V().Has('Name', 'br-int-lb').Values('State')\")); result = false; for (var i = 0; i != states.length; i++){ if (states[i] == 'DOWN'){ result = true; break;}} result;"
+
 {% endhighlight %}
 
 The alert will be triggered every time the result of the JavaScript expression changes.
@@ -264,11 +265,11 @@ It gets trigerred again the next time the bandwidth bypass this threshold.
 
 {% highlight shell %}
 skydive client alert create \
-  --expression "Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\").ABBytes > 1*1024*1024" \
+  --expression "JSON.parse(Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\")).ABBytes > 1*1024*1024" \
   --trigger "duration:10s"
 {
   "UUID": "331b5590-c45d-4723-55f5-0087eef899eb",
-  "Expression": "Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\").ABBytes > 1*1024*1024",
+  "Expression": "JSON.parse(Gremlin(\"G.Flows().Has('Network.A', '192.168.0.1').Metrics().Sum()\")).ABBytes > 1*1024*1024",
   "Trigger": "duration:10s",
   "CreateTime": "2016-12-29T13:29:05.197612381+01:00"
 }
