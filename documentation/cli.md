@@ -254,7 +254,8 @@ you can use the following JavaScript expression :
 
 {% highlight shell %}
 skydive client alert create \
-  --expression "states = Gremlin(\"G.V().Has('Name', 'br-int-lb').Values('State')\"); result = false; for (var i = 0; i < states.length; i++){ if (states[i] == 'DOWN'){ result = true; break;}} result;"
+  --expression "states = JSON.parse(Gremlin(\"G.V().Has('Name', 'br-int-lb').Values('State')\")); result = false; for (var i = 0; i != states.length; i++){ if (states[i] == 'DOWN'){ result = true; break;}} result;"
+
 {% endhighlight %}
 
 The alert will be triggered every time the result of the JavaScript expression changes.
