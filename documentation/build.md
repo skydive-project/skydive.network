@@ -113,4 +113,61 @@ dpdk:
   # debug: 1
 {% endhighlight %}
 
-Ports to be used need to be uncommented or added.
+Ports to be used need to be un-commented or added.
+
+## Third Parties
+
+### Collectd plugin
+
+`Skydive` comes with a `Collectd` plugin which allows to expose `Collectd` metrics to the `Skydive` topology. The plugin has to be
+started on the same host than `Skydive` agents and will update the `Host` node of the `Skydive` topology.
+
+In order to compile the `Skydive Collectd plugin` one need to have the [Collectd sources](https://github.com/collectd/collectd).
+
+{% highlight shell %}
+export COLLECTD_SRC=/tmp/collectd
+
+git clone https://github.com/collectd/collectd $COLLECTD_SRC
+cd $GOPATH/src/github.com/skydive-project/skydive
+
+make contrib.collectd
+{% endhighlight %}
+
+A `skydive.so` share library is generated in `contrib/collectd` folder.
+
+In order to use it, it has to be copied in the collectd plugin folder. In order to configure it the following section
+has to be added to the `collectd` config file.
+
+{% highlight shell %}
+LoadPlugin skydive
+<Plugin skydive>
+    Address "127.0.0.1:8081"
+    Username ""
+    Password ""
+</Plugin>
+{% endhighlight %}
+
+* `Address` is the `Skydive` agent address
+* `Username` `Skydive` cluster authentication user name
+* `Password` `Skydive` cluster authentication password
+
+Example:
+
+In order to get memory metrics from `Collectd`:
+
+{% highlight shell %}
+LoadPlugin memory
+
+LoadPlugin skydive
+<Plugin skydive>
+    Address "127.0.0.1:8081"
+    Username ""
+    Password ""
+</Plugin>
+{% endhighlight %}
+
+All the `Collectd` metrics are currently reported in a `Collectd` sub-key of the `Host` topology node.
+
+{% highlight shell %}
+skydive client query 'G.V().HasKey("Collectd").Values("Collectd")
+{% endhighlight %}

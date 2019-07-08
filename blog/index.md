@@ -3,6 +3,12 @@ title: Blog
 layout: blog-index
 ---
 
+# [Collectd as Skydive metrics provider](/blog/collectd.html)
+## by Sylvain Afchain, 08/07/2019
+We recently introduced a first version of a `Skydive` `Collectd` plugin. This aims to leverage some `Collectd` plugin to enhance the
+`Skydive` topology. This blog post will explain how the `Skydive` architecture allowed to implement it quickly and how the metrics
+are reported.
+
 # [Introducing the Skydive Kubernetes probe](/blog/k8s-probe.html)
 ## by Aidan Shribman, 01/05/2019
 
