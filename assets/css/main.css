@@ -163,6 +163,12 @@ table {
 
 th, td {
 	padding: 6px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-bottom: 2px solid white;
+	text-align: center;
+}
+
+tr :first-child {
+	text-align: left;
 }
