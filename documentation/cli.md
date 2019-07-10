@@ -111,6 +111,7 @@ capture description and capture type optionally.
 At this time, the following capture types are supported :
 
 * `ovssflow`, for interfaces managed by OpenvSwitch such as OVS bridges
+* `ovsnetflow`, for interfaces managed by OpenvSwitch such as OVS bridges
 * `afpacket`, for interfaces suchs as Linux bridges, veth, devices, ...
 * `pcap`, same as `afpacket`
 * `sFlow`, Socket reading sFlow frames
@@ -133,6 +134,55 @@ files (using `nc` for instance). Traffic injected into this socket will have
 its capture point set to the selected node. The TCP socket address can be
 retrieved using the `PCAPSocket` attribute of the node or using the
 `PCAPSocket` attribute of the capture.
+
+### Targets
+
+Skydive provides a way to send packets or flows from the agent to an external tool/endpoint. Multiple protocols
+are supported to transport the flows or the packets:
+
+* NetFlow v5
+* SFlow
+* ERSpan type II
+
+Not all the protocol are supported by all the capture type. Bellow a matrix of what is available per capture type.
+
+|             | NetFlow | ERSpan | sFlow |
+|-------------|---------|--------|-------|
+| OVS NetFlow |    x    |        |       |
+| OVS sFlow   |         |        |   x   |
+| Others      |    x    |    x   |       |
+
+#### Examples
+
+The following examples show how to specify the target at capture creation time.
+
+sFlow on OpenvSwitch bridge :
+
+{% highlight shell %}
+skydive client capture create --gremlin "G.V().Has('Name', 'br-int', 'Type', 'ovsbridge')" \
+  --type ovssflow \--target 127.0.0.1:6343
+{% endhighlight %}
+
+NetFlow on OpenvSwitch bridge :
+
+{% highlight shell %}
+skydive client capture create --gremlin "G.V().Has('Name', 'br-int', 'Type', 'ovsbridge')" \
+  --type ovsnetflow --target 127.0.0.1:2055
+{% endhighlight %}
+
+NetFlow v5 on other interfaces :
+
+{% highlight shell %}
+skydive client capture create --gremlin "G.V().Has('Name', 'eth0')" \
+  --target 127.0.0.1:2055 --target-type netflowv5
+{% endhighlight %}
+
+ERSpan II on other interfaces :
+
+{% highlight shell %}
+skydive client capture create --gremlin "G.V().Has('Name', 'eth0')" \
+  --target 127.0.0.1:0 --target-type erspanv1
+{% endhighlight %}
 
 ## Packet injector
 
