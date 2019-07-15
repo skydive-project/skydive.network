@@ -3,6 +3,13 @@ title: Blog
 layout: blog-index
 ---
 
+# [Security Advisor add-on to Skydive](/blog/secadvisor.html)
+## by Kalman Meth, 31/07/2019
+
+Support was recently added for a Security Advisor add-on to Skydive.
+The Security Advisor filters the flow data obtained from Skydive, performs a data transformation, and saves the information to an object store in JSON format. This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
+In this article, we give full instructions to install and use the Security Advisor.
+
 # [Collectd as Skydive metrics provider](/blog/collectd.html)
 ## by Sylvain Afchain, 08/07/2019
 We recently introduced a first version of a `Skydive` `Collectd` plugin. This aims to leverage some `Collectd` plugin to enhance the
