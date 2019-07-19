@@ -67,10 +67,12 @@ API and WeUI are availble from the host at this address : http://192.168.10.10:8
 
 The Skydive WebUI is embedded within the binary. In order to not have to re-compile the
 binary each time you want to test modifications, Skydive has to be compiled 
-using the `debug` target
+using the `debug` target. To build the target in `debug` mode, set the `DEBUG`
+environment variable to `true`
 
 {% highlight shell %}
-make debug
+export DEBUG=true
+make install
 {% endhighlight %}
 
 Using this mode, assets will be read directly from the disk instead of using the bundled ones. 
