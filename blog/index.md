@@ -9,6 +9,13 @@ We recently introduced a first version of a `Skydive` `Collectd` plugin. This ai
 `Skydive` topology. This blog post will explain how the `Skydive` architecture allowed to implement it quickly and how the metrics
 are reported.
 
+# [Skydive with eBPF](/blog/skydive-with-ebpf.html)
+## by Andre Kassis, 07/07/2019
+
+Skydive is an open source real-time network topology and protocol analyzer. It aims to provide a comprehensive way of understanding what
+is happening in the network's infrastructure. To that end, Skydive collects data regarding the topology and the flows in the environment
+in which it is deployed and passes it to the user...
+
 # [Introducing the Skydive Kubernetes probe](/blog/k8s-probe.html)
 ## by Aidan Shribman, 01/05/2019
 
