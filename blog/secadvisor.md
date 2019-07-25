@@ -218,7 +218,7 @@ This is useful to capture different flows for different purposes and to perform 
 Via the Skydive WebUI setup captures and generate traffic which should
 result in the secadvisor pipeline sending flows to the ObjectStore.
 
-To connect to the GUI, open a web browZer to the address of the Skydive analyzer at port 8082. If running the browzer on the same machine as the analyzer, then connect to localhost:8082.
+To connect to the GUI, open a web browzer to the address of the Skydive analyzer at port 8082. If running the browzer on the same machine as the analyzer, then connect to localhost:8082.
 You should see the topology of your network, perhaps something like the following image.
 
 <p class="center">
@@ -282,7 +282,7 @@ If the secadvisor log shows a "connection refused" error, verify that the proper
 
 If the secadvisor log shows a credentials error, verify that the credential fields (<"access_key", "secret_key"> for minio, and <"api_key", "iam_endpoint"> for IBM COS) are properly set in the secadvisor.yml file.
 
-If the secadvisor log shows an overflow and states that flows were discarded, check that max_flow_array_size is defined to some reasonable positive number.
+If the secadvisor log shows an overflow and states that flows were discarded, check that max_flow_array_size is defined to some reasonable positive number - at least the number of flows you expect to capture.
 
 Verify that host_id is "".
 
