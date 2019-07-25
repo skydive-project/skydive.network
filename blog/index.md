@@ -3,6 +3,13 @@ title: Blog
 layout: blog-index
 ---
 
+# [Security Advisor add-on to Skydive](/blog/secadvisor.html)
+## by Kalman Meth, 31/07/2019
+
+Support was recently added for a Security Advisor add-on to Skydive.
+The Security Advisor filters the flow data obtained from Skydive, performs a data transformation, and saves the information to an object store in JSON format. This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
+In this article, we give full instructions to install and use the Security Advisor.
+
 # [Introducing the Skydive Kubernetes probe](/blog/k8s-probe.html)
 ## by Aidan Shribman, 01/05/2019
 
