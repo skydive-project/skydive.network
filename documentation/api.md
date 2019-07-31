@@ -6,6 +6,8 @@ layout: doc
 
 ## REST API
 
+The full specification is available using Swagger [here](/swagger).
+
 ### Topology/Flow request
 
 {% highlight shell %}
