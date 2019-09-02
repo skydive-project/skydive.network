@@ -14,7 +14,7 @@ A flow is merely a connection (typically defined by a 5-tuple) between two endpo
 <p>
   <a href="/assets/images/blog/ebpf_overview.jpg" data-lightbox="WebUI-1" data-title="Skydive Overview">
     <center>
-      <img src="/assets/images/blog/ebpf_overview.jpg" width="500"/>
+      <img src="/assets/images/blog/ebpf_overview.jpg"/>
     </center>
   </a>
 </p>
@@ -48,7 +48,7 @@ With the help of this powerful tool, we were able to write a custom packet probe
 <p>
   <a href="/assets/images/blog/ebpf.png" data-lightbox="WebUI-1" data-title="eBPF Illustration">
     <center>
-      <img src="/assets/images/blog/ebpf.png" width="500"/>
+      <img src="/assets/images/blog/ebpf.png"/>
     </center>
   </a>
 </p>
@@ -89,7 +89,7 @@ The numeric results are depicted in the graph below:
 <p>
   <a href="/assets/images/blog/ebpf_performance_report.png" data-lightbox="WebUI-1" data-title="eBPF Performance">
     <center>
-      <img src="/assets/images/blog/ebpf_performance_report.png" width="500"/>
+      <img src="/assets/images/blog/ebpf_performance_report.png"/>
     </center>
   </a>
 </p>
@@ -99,7 +99,7 @@ The graph below compares the CPU usage of the eBPF probe to that of PCAP:
 <p>
   <a href="/assets/images/blog/ebpf_vs_pcap.PNG" data-lightbox="WebUI-1" data-title="eBPF vs. PCAP">
     <center>
-      <img src="/assets/images/blog/ebpf_vs_pcap.PNG" width="500"/>
+      <img src="/assets/images/blog/ebpf_vs_pcap.PNG"/>
     </center>
   </a>
 </p>
