@@ -97,9 +97,9 @@ The numeric results are depicted in the graph below:
 The graph below compares the CPU usage of the eBPF probe to that of PCAP:
 
 <p>
-  <a href="/assets/images/blog/ebpf_vs_pcap.PNG" data-lightbox="WebUI-1" data-title="eBPF vs. PCAP">
+  <a href="/assets/images/blog/ebpf_vs_pcap.png" data-lightbox="WebUI-1" data-title="eBPF vs. PCAP">
     <center>
-      <img src="/assets/images/blog/ebpf_vs_pcap.PNG"/>
+      <img src="/assets/images/blog/ebpf_vs_pcap.png"/>
     </center>
   </a>
 </p>

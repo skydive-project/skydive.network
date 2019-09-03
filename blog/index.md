@@ -3,6 +3,13 @@ title: Blog
 layout: blog-index
 ---
 
+# [How to sent packets/flows to external tool](/blog/capture-targets.html)
+## by Sylvain Afchain, 03/09/2019
+
+Sometimes you may want to use `Skydive` to automate your packet captures but having the flows or the packets sent directly to an external tool.
+While `Skydive` provides since awhile now a mechanism to attach the ["original/raw"](/tutorials/first-steps-7.html#keep-original-packets) packets to a flow,
+I will describe here another mechanism that we introduced quite recently to expose flow or packets outside of `Skydive`.
+
 # [Security Advisor add-on to Skydive](/blog/secadvisor.html)
 ## by Kalman Meth, 31/07/2019
 
