@@ -1,5 +1,5 @@
 ---
-title: How to sent packets/flows to external tool ?
+title: How to send packets/flows to external tool ?
 layout: blog-post
 author: Sylvain Afchain
 date: 29/07/2019

@@ -3,7 +3,7 @@ title: Blog
 layout: blog-index
 ---
 
-# [How to sent packets/flows to external tool](/blog/capture-targets.html)
+# [How to send packets/flows to external tool](/blog/capture-targets.html)
 ## by Sylvain Afchain, 03/09/2019
 
 Sometimes you may want to use `Skydive` to automate your packet captures but having the flows or the packets sent directly to an external tool.
