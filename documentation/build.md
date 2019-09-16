@@ -13,7 +13,7 @@ Skydive relies on two main components:
 ## Dependencies
 
 ### Minimal
-* Go >= 1.9
+* Go >= 1.11
 * libpcap (dev)
 * libxml2 (dev)
 * libvirt (dev)
