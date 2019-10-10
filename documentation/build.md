@@ -119,7 +119,7 @@ Ports to be used need to be un-commented or added.
 
 ### Collectd plugin
 
-`Skydive` comes with a `Collectd` plugin which allows to expose `Collectd` metrics to the `Skydive` topology. The plugin has to be
+`Skydive Project` provides a `Collectd` plugin which allows to expose `Collectd` metrics to the `Skydive` topology. The plugin has to be
 started on the same host than `Skydive` agents and will update the `Host` node of the `Skydive` topology.
 
 In order to compile the `Skydive Collectd plugin` one need to have the [Collectd sources](https://github.com/collectd/collectd).
@@ -128,12 +128,16 @@ In order to compile the `Skydive Collectd plugin` one need to have the [Collectd
 export COLLECTD_SRC=/tmp/collectd
 
 git clone https://github.com/collectd/collectd $COLLECTD_SRC
-cd $GOPATH/src/github.com/skydive-project/skydive
 
-make contrib.collectd
+mkdir -p $GOPATH/src/github.com/skydive-project
+git clone https://github.com/skydive-project/skydive-collectd-plugin.git \
+  $GOPATH/src/github.com/skydive-project/skydive-collectd-plugin
+cd $GOPATH/src/github.com/skydive-project/skydive-collectd-plugin
+
+make
 {% endhighlight %}
 
-A `skydive.so` share library is generated in `contrib/collectd` folder.
+This will generate a shared object (`skydive.so`) that can be placed in the collectd plugin folder.
 
 In order to use it, it has to be copied in the collectd plugin folder. In order to configure it the following section
 has to be added to the `collectd` config file.
