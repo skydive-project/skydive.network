@@ -138,6 +138,26 @@ of steps `Out/Has` for example.
 G.V().Has('Name', 'br-int', 'Type', 'ovsbridge').Out('Name', 'intf1')
 {% endhighlight %}
 
+### Descendants
+
+`Descendants` step get the children nodes of elements retrieved by the previous step.
+
+{% highlight shell %}
+G.V('ca909ccf-203d-457d-70b8-06fe308221ef').Descendants()
+{% endhighlight %}
+
+`Descendants` takes also an optional depth parameter which repeats the call n times.
+
+{% highlight shell %}
+G.V('ca909ccf-203d-457d-70b8-06fe308221ef').Descendants(3)
+{% endhighlight %}
+
+Is equal to:
+
+{% highlight shell %}
+G.V('ca909ccf-203d-457d-70b8-06fe308221ef').Descendants().Descendants().Descendants()
+{% endhighlight %}
+
 ### InE/OutE/BothE
 
 `InE/OutE/BothE` steps returns the incoming/ougoing links.
