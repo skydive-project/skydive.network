@@ -144,13 +144,13 @@ skydive_extra_config={'agent.topology.probes': ['socketinfo', 'docker'], 'loggin
 Some examples are present in the
 [inventory](https://github.com/skydive-project/skydive/tree/master/contrib/ansible/inventory) folder.
 
-### OpenStack Tripleo
+### OpenStack TripleO
 
-In order to ease the deployment of Skydive on top of a Tripleo deployment we provide a script which helps
+In order to ease the deployment of Skydive on top of a TripleO deployment we provide a script which helps
 to generate the appropriate inventory file.
 
 This script can be found
-[here](https://github.com/skydive-project/skydive/blob/master/contrib/tripleo/skydive-tripleo-inventory)
+[here](https://github.com/skydive-project/skydive-tripleo-inventory/blob/master/skydive-tripleo-inventory)
 
 In order to use it you will have to use the following steps:
 
