@@ -3,6 +3,14 @@ title: Blog
 layout: blog-index
 ---
 
+# [Skydive-Prometheus Connector](/blog/prometheus-connector.html)
+## by Kalman Meth, 01/11/2020
+
+Support was recently added for a Skydive-Prometheus connector based on the skydive-flow-exporter.
+The connector translates data from Skydive captured flows into a format that can be consumed by Prometheus.
+The first implementation of the Skydive-Prometheus connector periodically provides the byte transfer counts for each network connection under observation.
+The code can be easily tailored to provide additional flow information.
+
 # [How to send packets/flows to external tool](/blog/capture-targets.html)
 ## by Sylvain Afchain, 03/09/2019
 
