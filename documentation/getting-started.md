@@ -9,14 +9,14 @@ to explain the most common ways.
 
 ## Downloading binary
 
-The easiest way is to download one of the statically binary of Skydive. There
-are two kind of binary, one is built each time a feature of a bug fix is
+The easiest way is to download a static binary of Skydive. There
+are two kind of binaries, one is built each time a feature or a bug fix is
 available
-<a href="https://github.com/skydive-project/skydive-binaries/blob/jenkins-builds/skydive-latest" target="_blank">
-  (continous binary)
+<a href="https://github.com/skydive-project/skydive-binaries/blob/jenkins-builds/skydive-latest.gz" target="_blank">
+  (continuous binary)
 </a>, the others are provided for each
 <a href="https://github.com/skydive-project/skydive/releases" target="_blank">
-  releases
+  release
 </a>.
 
 Since Skydive uses the same binary for all its component, one can use it as
