@@ -226,3 +226,12 @@ The data shown in the graph should contain the following fields:
 
 Each such tuple is associated with timestamps and corresponding values that appear in the graph.
 
+The graph in the Prometheus GUI may look something like the following:
+
+<p align="center">
+  <a href="/assets/images/blog/SkydivePrometheusGraph.png" data-lightbox="prom_sky_con_graph" data-title="Skydive-Prometheus connector graph">
+    <img src="/assets/images/blog/SkydivePrometheusGraph.png" style="width:90%;"/>
+  </a>
+</p>
+
+The graph shows the data rate of various connections that are tracked by Skydive.
