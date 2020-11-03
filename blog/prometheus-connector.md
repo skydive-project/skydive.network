@@ -1,11 +1,12 @@
 ---
-title: Skydive-Prometheus Connector: blog-post
+title: Skydive-Prometheus Connector
 author: Kalman Meth
+layout: blog-post
 date: 1/11/2020
 ---
-Prometheus (`https://prometheus.io/`) is an open-source systems monitoring and alerting tool.
+[Prometheus](https://prometheus.io/) is an open-source systems monitoring and alerting tool.
 Many different types of data are collected by different tools and are forwarded to Prometheus via various types of exporters.
-For example, the Prometheus Node Exporter (`https://prometheus.io/docs/guides/node-exporter/`) exposes a wide variety of hardware- and kernel-related metrics.
+For example, the [Prometheus Node Exporter](https://prometheus.io/docs/guides/node-exporter/) exposes a wide variety of hardware- and kernel-related metrics.
 We developed an exporter for Skydive that reports metrics of individual captured network flows.
 The connector translates data from Skydive captured flows into a format that can be consumed by Prometheus.
 The first implementation of the Skydive-Prometheus connector periodically provides the byte transfer counts for each network connection under observation.
@@ -25,27 +26,29 @@ You can either download a statically linked version of Skydive or you can build 
 
 To download a pre-compiled statically linked version of Skydive, run the following command.
 
-```
++{% highlight shell %}
 curl -Lo skydive https://github.com/skydive-project/skydive-binaries/raw/jenkins-builds/skydive-latest && chmod +x skydive && sudo mv skydive /usr/local/skydive/
-```
++{% endhighlight %}
 
 To build your own version of Skydive, follow the instructions on [Build Documentation](/documentation/build) to install prerequisites and prepare your machine to build the Skydive code.
 Enter the Skydive root directory and build the code.
 
-```
++{% highlight shell %}
 cd $GOPATH/src/github.com/skydive-project/skydive
 make
 cp etc/skydive.yml.default /etc/skydive/skydive.yml
-# adjust settings in skydive.yml, if desired
-```
++{% endhighlight %}
 
-The skydive binary is created in $GOPATH/bin/skydive.
+Adjust settings in skydive.yml, if desired.
+
+
+The skydive binary is created in `$GOPATH/bin/skydive`.
 
 ### All-in-one version
 
-```
++{% highlight shell %}
 sudo skydive allineone -c /etc/skydive/skydive.yml
-```
++{% endhighlight %}
 
 ### Multi-node Deployment
 
@@ -53,14 +56,15 @@ Alternatively, run a Skydive analyzer on one host and a Skydive agent on each of
 
 On one machine:
 
-```
++{% highlight shell %}
 sudo skydive analyzer -c /etc/skydive/skydive.yml
-```
++{% endhighlight %}
+
 On each machine:
 
-```
++{% highlight shell %}
 sudo skydive agent -c /etc/skydive/skydive.yml
-```
++{% endhighlight %}
 
 Be sure to set the field `analyzers` in the `skydive.yml` to point to the analyzer.
 
@@ -70,15 +74,15 @@ Be sure to set the field `analyzers` in the `skydive.yml` to point to the analyz
 Start from the `prom_sky_con.yml.default` in the `prom_sky_con` directory.
 
 
-```
++{% highlight shell %}
 cp prom_sky_con.yml.default /etc/skydive/prom_sky_con.yml
-```
++{% endhighlight %}
 
 The `prom_sky_con.yml` is used as a parameter when running `prom_sky_con` from the command line.
 
 The default `prom_sky_con.yml` has the following fields:
 
-```
++{% highlight shell %}
 host_id: ""
 analyzers:
   - 127.0.0.1:8082
@@ -103,23 +107,31 @@ pipeline:
     prom_sky_con:
       port: 9100
       connection_timeout: 60
-```
++{% endhighlight %}
 
-The paramaters in the yml file are inherited from the generic `skydive-flow-exporter`.
+The paramaters in the yml file are inherited from the generic [skydive-flow-exporter](https://github.com/skydive-project/skydive-flow-exporter).
 The main entries that may need adjustment are those involving the address of the Skydive analyzers and subscriber.
 The `port` and `connection_timeout` parameters under `store.prom_sky_con` may also be adjusted.
 `store.prom_sky_con.port` is the network port at which Prometheus will probe the connector to pull the metrics.
 This port number must match the value specified in the Prometheus config file for the Skydive-Prometheus connector.
 `store.prom_sky_con.connection_timeout` is the number of seconds that have elapsed with no traffic on a connection before we assume the connection is inactive.
 
+### Fields specific to Skydive-Prometheus connector
+
+| Field Name                                       | Type           | Description |
+|--------------------------------------------------|----------------|-------------|
+| pipeline.store.type                              | string         | set to `prom_sky_con` |
+| pipeline.store.prom_sky_con.port                 | int            | port number used between Prometheus and connector to scrape the supplied metrics |
+| pipeline.store.prom_sky_con.connection_timeout   | int            | number of seconds with no traffic before considering a connection as dead |
+
 ## Build and Deploy the Skydive-Prometheus connector
 
-```
++{% highlight shell %}
 cd $GOPATH/src/github.com/skydive-project/skydive-flow-exporter/prom_sky_con
 make static
 
 prom_sky_con /etc/skydive/prom_sky_con.yml
-```
++{% endhighlight %}
 
 ## Generate and Capture Flows
 
@@ -145,9 +157,9 @@ Then press the `Start` button on the GUI.
 
 Alternatively, you can start the capture of flows from the command line with a command like the following:
 
-```
++{% highlight shell %}
 skydive client capture create --gremlin "G.V().Has('Type', 'device', 'Name', 'eth0')" --type pcap 
-```
++{% endhighlight %}
 
 The command specifies to capture all flows that match the gremlin expression - in this case, all devices that have name 'eth0'.
 
@@ -158,21 +170,21 @@ For example, run some iperf traffic between entities and capture the flow via th
 
 To install `iperf3` (on ubuntu/debian):
 
-```
++{% highlight shell %}
 sudo apt install iperf3
-```
++{% endhighlight %}
 
 Run iperf server:
 
-```
++{% highlight shell %}
 iperf3 -s
-```
++{% endhighlight %}
 
 Either on the same machine or on another machine, run the iperf client:
 
-```
++{% highlight shell %}
 iperf3 -c <address-of-iperfserever> -t 10000
-```
++{% endhighlight %}
 
 It is also possible to generate network traffic using the inject feature of Skydive, either from the command line or through the Skydive GUI.
 Go the `Generator` page and specify the source and destination nodes between which to generate the network traffic, as well as the characterization of the flow you want to generate.
@@ -182,15 +194,22 @@ Go the `Generator` page and specify the source and destination nodes between whi
 
 In the Prometheus config file, add a stanza specifying the location and port used by the Skydive-Prometheus connector.
 
-```
++{% highlight shell %}
   - job_name: 'skydive-connector'
     static_configs:
     - targets: ['xx.xx.xx.xx:9100']
 
-```
++{% endhighlight %}
+
 Restart Prometheus to pick up the new stanza in the config file.
 
-## Verify Operation
+### Output of Skydive-Prometheus connector
+
+| Metric Name                            | Type  | Description | Labels |
+|----------------------------------------|-------|-------------|
+| skydive_network_connection_total_bytes | int   | total bytes transferred on connection | initiator_ip, target_ip, initiator_port, target_port, direction, node_tid |
+
+### Verify Operation
 
 Wait for 60 seconds and then check that we have data arriving in the Prometheus GUI.
 Look for a metric beginning with `skydive` such as `skydive_network_connection_total_bytes`.
@@ -205,6 +224,5 @@ The data shown in the graph should contain the following fields:
   * `direction`
   * `node_tid`
 
-In addition, each such tuple is associated with timestamps and corresponding values that appear in the graph.
+Each such tuple is associated with timestamps and corresponding values that appear in the graph.
 
-##
