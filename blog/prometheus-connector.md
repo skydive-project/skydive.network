@@ -26,18 +26,18 @@ You can either download a statically linked version of Skydive or you can build 
 
 To download a pre-compiled statically linked version of Skydive, run the following command.
 
-+{% highlight shell %}
+{% highlight shell %}
 curl -Lo skydive https://github.com/skydive-project/skydive-binaries/raw/jenkins-builds/skydive-latest && chmod +x skydive && sudo mv skydive /usr/local/skydive/
-+{% endhighlight %}
+{% endhighlight %}
 
 To build your own version of Skydive, follow the instructions on [Build Documentation](/documentation/build) to install prerequisites and prepare your machine to build the Skydive code.
 Enter the Skydive root directory and build the code.
 
-+{% highlight shell %}
+{% highlight shell %}
 cd $GOPATH/src/github.com/skydive-project/skydive
 make
 cp etc/skydive.yml.default /etc/skydive/skydive.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 Adjust settings in skydive.yml, if desired.
 
@@ -46,9 +46,9 @@ The skydive binary is created in `$GOPATH/bin/skydive`.
 
 ### All-in-one version
 
-+{% highlight shell %}
+{% highlight shell %}
 sudo skydive allineone -c /etc/skydive/skydive.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 ### Multi-node Deployment
 
@@ -56,15 +56,15 @@ Alternatively, run a Skydive analyzer on one host and a Skydive agent on each of
 
 On one machine:
 
-+{% highlight shell %}
+{% highlight shell %}
 sudo skydive analyzer -c /etc/skydive/skydive.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 On each machine:
 
-+{% highlight shell %}
+{% highlight shell %}
 sudo skydive agent -c /etc/skydive/skydive.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 Be sure to set the field `analyzers` in the `skydive.yml` to point to the analyzer.
 
@@ -74,15 +74,15 @@ Be sure to set the field `analyzers` in the `skydive.yml` to point to the analyz
 Start from the `prom_sky_con.yml.default` in the `prom_sky_con` directory.
 
 
-+{% highlight shell %}
+{% highlight shell %}
 cp prom_sky_con.yml.default /etc/skydive/prom_sky_con.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 The `prom_sky_con.yml` is used as a parameter when running `prom_sky_con` from the command line.
 
 The default `prom_sky_con.yml` has the following fields:
 
-+{% highlight shell %}
+{% highlight shell %}
 host_id: ""
 analyzers:
   - 127.0.0.1:8082
@@ -107,7 +107,7 @@ pipeline:
     prom_sky_con:
       port: 9100
       connection_timeout: 60
-+{% endhighlight %}
+{% endhighlight %}
 
 The paramaters in the yml file are inherited from the generic [skydive-flow-exporter](https://github.com/skydive-project/skydive-flow-exporter).
 The main entries that may need adjustment are those involving the address of the Skydive analyzers and subscriber.
@@ -126,12 +126,12 @@ This port number must match the value specified in the Prometheus config file fo
 
 ## Build and Deploy the Skydive-Prometheus connector
 
-+{% highlight shell %}
+{% highlight shell %}
 cd $GOPATH/src/github.com/skydive-project/skydive-flow-exporter/prom_sky_con
 make static
 
 prom_sky_con /etc/skydive/prom_sky_con.yml
-+{% endhighlight %}
+{% endhighlight %}
 
 ## Generate and Capture Flows
 
@@ -157,9 +157,9 @@ Then press the `Start` button on the GUI.
 
 Alternatively, you can start the capture of flows from the command line with a command like the following:
 
-+{% highlight shell %}
+{% highlight shell %}
 skydive client capture create --gremlin "G.V().Has('Type', 'device', 'Name', 'eth0')" --type pcap 
-+{% endhighlight %}
+{% endhighlight %}
 
 The command specifies to capture all flows that match the gremlin expression - in this case, all devices that have name 'eth0'.
 
@@ -170,21 +170,21 @@ For example, run some iperf traffic between entities and capture the flow via th
 
 To install `iperf3` (on ubuntu/debian):
 
-+{% highlight shell %}
+{% highlight shell %}
 sudo apt install iperf3
-+{% endhighlight %}
+{% endhighlight %}
 
 Run iperf server:
 
-+{% highlight shell %}
+{% highlight shell %}
 iperf3 -s
-+{% endhighlight %}
+{% endhighlight %}
 
 Either on the same machine or on another machine, run the iperf client:
 
-+{% highlight shell %}
+{% highlight shell %}
 iperf3 -c <address-of-iperfserever> -t 10000
-+{% endhighlight %}
+{% endhighlight %}
 
 It is also possible to generate network traffic using the inject feature of Skydive, either from the command line or through the Skydive GUI.
 Go the `Generator` page and specify the source and destination nodes between which to generate the network traffic, as well as the characterization of the flow you want to generate.
@@ -194,12 +194,12 @@ Go the `Generator` page and specify the source and destination nodes between whi
 
 In the Prometheus config file, add a stanza specifying the location and port used by the Skydive-Prometheus connector.
 
-+{% highlight shell %}
+{% highlight shell %}
   - job_name: 'skydive-connector'
     static_configs:
     - targets: ['xx.xx.xx.xx:9100']
 
-+{% endhighlight %}
+{% endhighlight %}
 
 Restart Prometheus to pick up the new stanza in the config file.
 
