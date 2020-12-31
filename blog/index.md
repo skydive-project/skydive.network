@@ -11,6 +11,13 @@ The connector translates data from Skydive captured flows into a format that can
 The first implementation of the Skydive-Prometheus connector periodically provides the byte transfer counts for each network connection under observation.
 The code can be easily tailored to provide additional flow information.
 
+# [Flow Exporter add-on to Skydive](/blog/exporters.html)
+## by Kalman Meth, 31/12/2019
+
+Support was recently added for an Exporter add-on to Skydive.
+The Exporter filters the flow data obtained from Skydive, performs a data transformation, and forwards the information to some output, possibly an object store. This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
+In this article, we give a detailed description of the various options plus instructions to use the Flow Exporter.
+
 # [How to send packets/flows to external tool](/blog/capture-targets.html)
 ## by Sylvain Afchain, 03/09/2019
 
@@ -18,12 +25,12 @@ Sometimes you may want to use `Skydive` to automate your packet captures but hav
 While `Skydive` provides since awhile now a mechanism to attach the ["original/raw"](/tutorials/first-steps-7.html#keep-original-packets) packets to a flow,
 I will describe here another mechanism that we introduced quite recently to expose flow or packets outside of `Skydive`.
 
-# [Flow Exporter add-on to Skydive](/blog/exporters.html)
-## by Kalman Meth, 31/12/2019
+# [Security Advisor add-on to Skydive](/blog/secadvisor.html)
+## by Kalman Meth, 31/07/2019
 
-Support was recently added for an Exporter add-on to Skydive.
-The Exporter filters the flow data obtained from Skydive, performs a data transformation, and saves the information to an object store. This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
-In this article, we give full instructions to install and use the Exporter.
+Support was recently added for a Security Advisor add-on to Skydive.
+The Security Advisor filters the flow data obtained from Skydive, performs a data transformation, and saves the information to an object store in JSON format. This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
+In this article, we give full instructions to install and use the Security Advisor.
 
 # [Collectd as Skydive metrics provider](/blog/collectd.html)
 ## by Sylvain Afchain, 08/07/2019
