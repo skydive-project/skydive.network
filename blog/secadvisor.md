@@ -8,8 +8,8 @@ date: 31/07/2019
 
 The Security Advisor filters the flow data obtained from Skydive, performs a data transformation, and saves the information to an object store in GZIP compressed JSON encoding format.
 This data may then be used to perform various kinds of analyses for security, accounting, or other purposes.
-
-Instructions to developers to deploy and run the Secruity Advisor can be found at [Secadvisor Developer's README](https://github.com/skydive-project/skydive/tree/master/contrib/pipelines/secadvisor/README.md).
+The Security Advisor is built on top of the Skydive Flow Exporter.
+Instructions to developers and high level architecture of the Flow Exporter can be found at [Flow Exporter Overview](https://github.com/skydive-project/skydive-flow-exporter/blob/master/README.md).
 We present here extended instructions for users to deploy Skydive and the Security Advisor.
 
 We use the term `pipeline` to describe the sequence of operations performed on the data: classify, filter, transform, encode, store.
@@ -166,7 +166,7 @@ You can either use AWS-style HMAC keys by setting `access_key` and `secret_key`,
 
 ### Setup IBM COS
 
-In IBM Cloud, Create an Object Store resource. The Lite plan gives limited resources for free.
+In IBM Cloud, Create an Object Store resource.
 In the Object Store, create a bucket to hold the Skydive flow information. For simple testing, you can choose Single Site resiliency.
 Look under Bucket Configuration to see the Public endpoint (url) where the bucket is accessed. This endpoint information needs to go into the `secadvisor.yml` `endpoint` field.
 Go to the `Service Credentials` panel and create a new credential. Click on `View Credential` to get the details of the credential. The apikey needs to go into the `secadvisor.yml` `api_key` field.
@@ -176,23 +176,23 @@ In the `secadvisor.yml` file, uncomment the `iam_endpoint` field and set it to `
 
 For running tests on a local machine, it is possible to set up a local Minio object store.
 
-For details, see the instructions found at [Secadvisor Developer's README](https://github.com/skydive-project/skydive/tree/master/contrib/pipelines/secadvisor/README.md).
+For details, see the instructions in [Flow Exporter Overview](https://github.com/skydive-project/skydive-flow-exporter/blob/master/README.md).
 
 ## Deploy the Security Advisor pipeline
 
-Build and run the pipeline in the secadvisor directory: $SKYDIVE_BASE/contrib/pipelines/secadvisor.
+Build and run the pipeline in the secadvisor directory: skydive-flow-exporter/secadvisor
 
 ```
-cd $SKYDIVE_BASE/contrib/pipelines/secadvisor
+cd skydive-flow-exporter/secadvisor
 make static
 ```
 
-The binary is created in the same directory: $SKYDIVE_BASE/contrib/pipelines/secadvisor/secadvisor.
+The binary is created in the directory: go/bin
 
 ### Activate the Security Advisor
 
 ```
-./secadvisor /etc/skydive/secadvisor.yml
+secadvisor /etc/skydive/secadvisor.yml
 ```
 
 Note that it is possible to run several instances of the Security Advisor at the same time, each one with a different configuration file.
@@ -324,6 +324,7 @@ For each flow we have the following fields and types, all collected in JSON enco
         Last             int64
         UpdateCount      int64
         NodeType         string
+        Extend           map[string]interface{}
 ```
 
 UUID - unique ID of the flow.
@@ -364,6 +365,38 @@ Last - time when last packet for this flow was detected.
 UpdateCount - number of updates in this report.
 
 NodeType - type of Skydive endpoint such as `device`, `switch`, `tun`, `bridge`, etc.
+
+Extend - miscellaneous fields defined by the user, as described in the next section.
+
+### Adding miscellaneous fields to Security Advisor output via configuation
+
+We added to the secadvisor pipeline the capability to extend the data output by specifying gremlin expressions with substitution in the yml file to generate additional fields in the output flow information.
+The basic syntax in the yml file looks like the following:
+
+```
+transform:
+  type: secadvisor
+  secadvisor:
+    exclude_started_flows: false
+    extend:
+      - VAR_NAME1=<gremlin expression with substitution strings>
+      - VAR_NAME2=<gremlin expression with substitution strings>
+```
+
+The gremlin expresion uses the [golang template feature](https://golang.org/pkg/text/template/), where template expressions are enclosed in \{\{ \}\}.
+The fields surrounded by \{\{ \}\} are taken as the names of fields in the flow information provided by the `transform` (described in the previous subsection) and are replaced with their actual values, before evaluating the gremlin expression and placing the result in a new field which is added to the flow information.
+For example, the gremlin expression may look like this:
+
+```
+    - AA_Name=G.V().Has('RoutingTables.Src','\{\{.Network.A\}\}').Values('Host')
+    - BB_Name=G.V().Has('RoutingTables.Src','\{\{.Network.B\}\}').Values('Host')
+```
+
+The result is that the value of Network.A (in the above example: 169.45.67.210) is inserted in the gremlin expression, the gremlin expression is then evaluated (or obtained from a cache), and the resulting value (the name of the host holding the network interface) is then placed in the field `AA_Name` under the `Extend` field of the flow information.
+
+The substitution string refers to fields that already exist in the data provided by the particular transform.
+If needed, be sure to put quotes around the substitution results.
+It is recommended to use only single quotes in the gremlin expression.
 
 
 ## Multiple pipelines
