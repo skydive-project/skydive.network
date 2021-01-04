@@ -383,13 +383,13 @@ transform:
       - VAR_NAME2=<gremlin expression with substitution strings>
 ```
 
-The gremlin expresion uses the [golang template feature](https://golang.org/pkg/text/template/), where template expressions are enclosed in {{ }}.
-The fields surrounded by {{ }} are taken as the names of fields in the flow information provided by the `transform` (described in the previous subsection) and are replaced with their actual values, before evaluating the gremlin expression and placing the result in a new field which is added to the flow information.
+The gremlin expresion uses the [golang template feature](https://golang.org/pkg/text/template/), where template expressions are enclosed in \{\{ \}\}.
+The fields surrounded by \{\{ \}\} are taken as the names of fields in the flow information provided by the `transform` (described in the previous subsection) and are replaced with their actual values, before evaluating the gremlin expression and placing the result in a new field which is added to the flow information.
 For example, the gremlin expression may look like this:
 
 ```
-    - AA_Name=G.V().Has('RoutingTables.Src','{{.Network.A}}').Values('Host')
-    - BB_Name=G.V().Has('RoutingTables.Src','{{.Network.B}}').Values('Host')
+    - AA_Name=G.V().Has('RoutingTables.Src','\{\{.Network.A\}\}').Values('Host')
+    - BB_Name=G.V().Has('RoutingTables.Src','\{\{.Network.B\}\}').Values('Host')
 ```
 
 The result is that the value of Network.A (in the above example: 169.45.67.210) is inserted in the gremlin expression, the gremlin expression is then evaluated (or obtained from a cache), and the resulting value (the name of the host holding the network interface) is then placed in the field `AA_Name` under the `Extend` field of the flow information.
