@@ -24,7 +24,7 @@ installing instructions for `kubectl` at
 Now you can setup Skydive on the cluster using `kubectl apply`:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/contrib/kubernetes/skydive.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/contrib/kubernetes/skydive.yaml
 ```
 This will result in the deployment of:
 - **Skydive agent (one per node):** collecting host/node information via node
@@ -208,12 +208,12 @@ by applying:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.0/samples/bookinfo/platform/kube/bookinfo.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-deny.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-details.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-ratings.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-reviews-v1.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-reviews-v2.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/bookinfo/bookinfo-netpol-reviews-v3.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-deny.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-details.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-ratings.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-reviews-v1.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-reviews-v2.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/bookinfo/bookinfo-netpol-reviews-v3.yaml
 ```
 
 In the following figure, we have set out a default `deny` network
@@ -240,9 +240,9 @@ Open the WebUI and expand the cluster resource and then the default namespace, t
 Use `kubectl apply` to create the sample:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/pv-volume.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/pv-claim.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/pv-pod.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/k8s/pv-volume.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/k8s/pv-claim.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/k8s/pv-pod.yaml
 ```
 When running the sample, you will notice that failed/starting resources are
 shown in RED (Down), while running resources are shown in WHITE (Up). Let us
@@ -279,8 +279,8 @@ Now create the wordpress sample (password **abc123**):
 
 ```
 kubectl create secret generic mysql-pass --from-literal password=abc123
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/mysql-deployment.yaml
-kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/v0.22.0/tests/k8s/wordpress-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/k8s/mysql-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/skydive-project/skydive/master/tests/k8s/wordpress-deployment.yaml
 ```
 
 Updating passwords on any landscape is standard practice and is
@@ -303,7 +303,7 @@ the dependant pods were not recreated and still use the old password
 First, we need to install the Skydive binary:
 
 ```
-wget -L0 https://github.com/skydive-project/skydive/releases/download/v0.22.0/skydive
+wget -L0 https://github.com/skydive-project/skydive/releases/download/master/skydive
 chmod +x skydive
 sudo mv skydive /usr/local/bin/skydive
 ```
