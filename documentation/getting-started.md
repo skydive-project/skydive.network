@@ -46,6 +46,21 @@ skydive analyzer [--conf etc/skydive.yml]
 skydive client
 {% endhighlight %}
 
+### Helm
+
+If you are using Kubernetes then you can deploy skydive using helm directly from Git:
+
+```console
+helm plugin install https://github.com/aslafy-z/helm-git --version 0.10.0
+helm repo add skydive git+https://github.com/skydive-project/skydive@charts
+helm repo update
+helm install skydive-analyzer skydive/skydive-analyzer
+helm install skydive-agent skydive/skydive-agent
+kubectl port-forward service/skydive-analyzer 8082:8082
+```
+
+Open a browser to http://localhost:8082 to access the analyzer Web UI.
+
 ## Vagrant deployment
 
 You can use Vagrant to deploy a Skydive environment with one virtual machine
